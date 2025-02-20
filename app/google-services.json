@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "642063047197",
+    "project_id": "tabty-77d15",
+    "storage_bucket": "tabty-77d15.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:642063047197:android:3673a646ab29628e7884f4",
+        "android_client_info": {
+          "package_name": "com.example.tabty"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJqd6NKgyZXkUucCw0WBwh9bSUwFyq_T8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

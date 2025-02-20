@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mealConstraintlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="30dp"
+        tools:context=".Meal.view.MealFragment" >
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:id="@+id/imageCardView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:elevation="6dp"
+            app:cardCornerRadius="15dp"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="43dp" >
+            <ImageView
+                android:id="@+id/meal_iv"
+                android:layout_width="325dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+
+                android:padding="4dp"
+                tools:src="@tools:sample/avatars" />
+            <ImageButton
+                android:id="@+id/mealFavButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/favourite" />
+            <ImageButton
+                android:id="@+id/mealCalendarButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/calendar" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:id="@+id/mealDesc_cardView"
+            android:layout_height="80dp"
+            app:cardCornerRadius="15dp"
+            android:backgroundTint="@color/Surface"
+            app:layout_constraintTop_toBottomOf="@id/imageCardView"
+            android:layout_marginTop="15dp"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="256dp" >
+
+            <TextView
+                android:id="@+id/meal_mealName_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/onSurface"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/dish_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="5dp"
+                android:textColor="@color/onSurface"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:text="@string/country"
+                 />
+            <TextView
+                android:id="@+id/mealType_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="85dp"
+                android:textColor="@color/onSurface"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                tools:text="Italian"
+                />
+            <ImageView
+                android:layout_width="30dp"
+                android:id="@+id/countryFlag_iv"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="150dp"
+                tools:src="@drawable/profile"/>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/instructions_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/instructions"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:textColor="@color/Primary"
+            app:layout_constraintTop_toBottomOf="@id/mealDesc_cardView"
+            android:layout_marginTop="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteX="5dp"
+            tools:layout_editor_absoluteY="316dp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/inst_cardView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/instructions_tv"
+            app:cardCornerRadius="15dp"
+            android:layout_marginTop="15dp"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="405dp" >
+            <TextView
+                android:id="@+id/instructionsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textStyle="italic"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                tools:text="Apperance" />
+        </androidx.cardview.widget.CardView>
+
+        <WebView
+            android:layout_width="match_parent"
+            android:id="@+id/webView"
+            android:layout_height="250dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/inst_cardView"
+            android:layout_marginTop="15dp"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="433dp"
+            android:background="@drawable/corner_radius"
+            tools:ignore="WebViewLayout" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

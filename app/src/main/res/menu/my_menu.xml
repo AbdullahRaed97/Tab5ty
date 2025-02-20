@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Logout"
+          android:id="@+id/menuLogout"
+          android:icon="@drawable/logout"/>
+    <item android:title="Favourite"
+          android:icon="@drawable/favourite"
+          android:id="@+id/menuFavourite"
+        />
+    <item android:title="Profile"
+          android:id="@+id/menuProfile"
+          android:icon="@drawable/profile"/>
+    <item android:title="Calendar"
+          android:id="@+id/menuCalendar"
+          android:icon="@drawable/calendar"/>
+</menu>

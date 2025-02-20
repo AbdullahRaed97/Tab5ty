@@ -1,0 +1,17 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Tabخty" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+         <item name="colorPrimary">@color/Primary</item>
+        <item name="colorOnPrimary">@color/onPrimary</item>
+        <item name="colorSecondary">@color/Secondary</item>
+        <item name="colorOnSecondary">@color/onSecondary</item>
+        <item name="colorTertiary">@color/onTeriary</item>
+        <item name="colorOnTertiary">@color/onTeriary</item>
+        <item name="colorSurface">@color/Surface</item>
+        <item name="colorOnSurface">@color/onSurface</item>
+    </style>
+
+    <style name="Theme.Tabخty" parent="Base.Theme.Tabخty" />
+
+</resources>

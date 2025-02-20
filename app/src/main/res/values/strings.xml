@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Tabخty</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcome_to_app">Welcome to\n  Tabخty</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="login">Login</string>
+    <string name="dont_have_account">Don\'t Have an Account ?</string>
+    <string name="signup">SignUp</string>
+    <string name="today_random_meal">Today\'s Random Meal:</string>
+    <string name="search">Search</string>
+    <string name="selection_of_meals_for_cozy_day">Selection of meals for cozy day:</string>
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
+    <string name="country">Dishes :</string>
+    <string name="instructions">Instructions :</string>
+</resources>
