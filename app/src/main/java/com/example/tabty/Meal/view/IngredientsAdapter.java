@@ -1,12 +1,21 @@
 package com.example.tabty.Meal.view;
 
+import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.tabty.R;
+
 public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.ViewHolder> {
+
+    OnCalendarClickListener calendarClickListener;
+    OnFavouriteClickListener favouriteClickListener;
+    Context context;
 
 
     @NonNull
@@ -26,9 +35,14 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-
+        ImageView ingredientImage;
+        TextView measureText;
+        TextView ingredientText;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            ingredientImage=itemView.findViewById(R.id.ingredient_iv);
+            measureText=itemView.findViewById(R.id.measureText);
+            ingredientText=itemView.findViewById(R.id.ingredientText);
         }
     }
 }
