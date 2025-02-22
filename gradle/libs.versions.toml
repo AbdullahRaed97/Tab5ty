@@ -1,5 +1,6 @@
 [versions]
 agp = "8.8.0"
+core = "12.1.0"
 dotlottieAndroid = "0.5.0"
 glide = "4.16.0"
 gson = "2.12.1"
@@ -21,10 +22,12 @@ navigationUi = "2.8.7"
 annotation = "1.9.1"
 googleGmsGoogleServices = "4.4.2"
 firebaseAuth = "23.2.0"
+navigationSafeArgsGradlePlugin = "2.8.7"
 
 [libraries]
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomCompiler" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+core = { module = "com.pierfrancescosoffritti.androidyoutubeplayer:core", version.ref = "core" }
 dotlottie-android = { module = "com.github.LottieFiles:dotlottie-android", version.ref = "dotlottieAndroid" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
@@ -45,6 +48,7 @@ navigation-fragment = { group = "androidx.navigation", name = "navigation-fragme
 navigation-ui = { group = "androidx.navigation", name = "navigation-ui", version.ref = "navigationUi" }
 annotation = { group = "androidx.annotation", name = "annotation", version.ref = "annotation" }
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
+androidx-navigation-safe-args-gradle-plugin = { group = "androidx.navigation", name = "navigation-safe-args-gradle-plugin", version.ref = "navigationSafeArgsGradlePlugin" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
