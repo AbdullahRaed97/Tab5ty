@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.tabty.Home.presenter.HomePresenter;
+import com.example.tabty.Meal.view.MealFragment;
 import com.example.tabty.Model.DB.Meal;
 import com.example.tabty.Model.DB.MealsLocalDataSource;
 import com.example.tabty.Model.MealsRepository;
@@ -44,6 +45,7 @@ public class HomeFragment extends Fragment implements OnImageClickedListener ,Ho
     TextView randomMeal_title;
     MealsRepository myRepo;
     TextView home_Instruction_tv;
+    Meal randoMealSent;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,7 +77,8 @@ public class HomeFragment extends Fragment implements OnImageClickedListener ,Ho
         presenter.getRemoteAllMealsByFirstLetter("s");
         presenter.getRemoteRandomMeal();
         randomMeal_iv.setOnClickListener(v->{
-            Navigation.findNavController(homeView).navigate(R.id.action_homeFragment_to_mealFragment2);
+            HomeFragmentDirections.ActionHomeFragmentToMealFragment2 action = HomeFragmentDirections.actionHomeFragmentToMealFragment2(randoMealSent);
+            Navigation.findNavController(homeView).navigate(action);
         });
 
     }
@@ -83,7 +86,9 @@ public class HomeFragment extends Fragment implements OnImageClickedListener ,Ho
     @Override
     public void imageClickedAction(Meal meal) {
         Snackbar.make(homeView,"Image Clicked",Snackbar.LENGTH_SHORT).show();
-        Navigation.findNavController(homeView).navigate(R.id.action_homeFragment_to_mealFragment2);
+        Meal sendMeal = meal;
+        HomeFragmentDirections.ActionHomeFragmentToMealFragment2 action = HomeFragmentDirections.actionHomeFragmentToMealFragment2(sendMeal);
+        Navigation.findNavController(homeView).navigate(action);
     }
 
     @Override
@@ -104,6 +109,7 @@ public class HomeFragment extends Fragment implements OnImageClickedListener ,Ho
                 .apply(new RequestOptions().override(500,500)).into(randomMeal_iv);
         randomMeal_title.setText(meals.get(0).getStrMeal());
         home_Instruction_tv.setText(meals.get(0).getStrInstructions());
+        randoMealSent = meals.get(0);
     }
 
     @Override
