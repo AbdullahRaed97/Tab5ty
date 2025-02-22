@@ -11,10 +11,10 @@ import retrofit2.http.Query;
 
 public interface ApiMeals {
         @GET("random.php")
-        Call<MealResponse> getRandomMeal();
+        Call<MealResponse> getRandomMeal();//done
         //return all details of random meal in ResponseMeal obj contain List(meals) having one meal only
         @GET("search.php")
-        Call<MealResponse> getMealsByFirstLetter(@Query("f") String firstLetter);
+        Call<MealResponse> getMealsByFirstLetter(@Query("f") String firstLetter);//done
         // Return MealResponse obj contain list(meals) of meals according to the similarity of first letter
         @GET("categories.php")
         Call<CategoriesResponse> getAllCategories();

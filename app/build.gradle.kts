@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.google.gms.google.services)
+    id("androidx.navigation.safeargs")
 }
 
 android {
@@ -54,5 +55,6 @@ dependencies {
     implementation (libs.lottie.compose)
     implementation (libs.androidx.room.runtime)
     annotationProcessor (libs.room.compiler)
+    implementation (libs.core)
 }
 
