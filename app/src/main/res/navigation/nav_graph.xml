@@ -58,5 +58,9 @@
     <fragment
         android:id="@+id/mealFragment2"
         android:name="com.example.tabty.Meal.view.MealFragment"
-        android:label="MealFragment" />
+        android:label="MealFragment" >
+        <argument
+            android:name="meal"
+            app:argType="com.example.tabty.Model.DB.Meal" />
+    </fragment>
 </navigation>
