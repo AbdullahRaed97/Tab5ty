@@ -9,7 +9,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class FirebaseManagement {
 
-   public static void loginIntoFirebase(String email , String password,FirebaseCallbak firebaseCallbak)
+   public static void loginIntoFirebase(String email , String password, FirebaseCallback firebaseCallbak)
     {
         FirebaseAuth myFirebase = FirebaseAuth.getInstance();
         myFirebase.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -29,7 +29,7 @@ public class FirebaseManagement {
         });
     }
 
-    public static void createFirebaseAccount(String email, String password , FirebaseCallbak firebaseCallbak)
+    public static void createFirebaseAccount(String email, String password , FirebaseCallback firebaseCallbak)
     {
         FirebaseAuth myFirebase = FirebaseAuth.getInstance();
         myFirebase.createUserWithEmailAndPassword(email,password)
