@@ -15,7 +15,9 @@
             app:destination="@id/signUpFragment" />
         <action
             android:id="@+id/action_splashFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -53,14 +55,49 @@
             app:destination="@id/loginFragment" />
         <action
             android:id="@+id/action_homeFragment_to_mealFragment2"
-            app:destination="@id/mealFragment2" />
+            app:destination="@id/mealFragment" />
     </fragment>
     <fragment
-        android:id="@+id/mealFragment2"
+        android:id="@+id/mealFragment"
         android:name="com.example.tabty.Meal.view.MealFragment"
         android:label="MealFragment" >
         <argument
             android:name="meal"
             app:argType="com.example.tabty.Model.DB.Meal" />
     </fragment>
+    <action
+        android:id="@+id/action_global_homeFragment"
+        app:destination="@id/homeFragment"
+        app:launchSingleTop="true" />
+    <action
+        android:id="@+id/action_global_loginFragment"
+        app:destination="@id/loginFragment"
+        app:launchSingleTop="true" />
+    <fragment
+        android:id="@+id/favouriteFragment"
+        android:name="com.example.tabty.FavouriteFragment"
+        android:label="fragment_favourite"
+        tools:layout="@layout/fragment_favourite" />
+    <action
+        android:id="@+id/action_global_favouriteFragment3"
+        app:destination="@id/favouriteFragment"
+        app:launchSingleTop="true" />
+    <fragment
+        android:id="@+id/calendarFragment"
+        android:name="com.example.tabty.CalendarFragment"
+        android:label="fragment_calendar"
+        tools:layout="@layout/fragment_calendar" />
+    <action
+        android:id="@+id/action_global_calendarFragment"
+        app:destination="@id/calendarFragment"
+        app:launchSingleTop="true" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.tabty.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <action
+        android:id="@+id/action_global_profileFragment"
+        app:destination="@id/profileFragment"
+        app:launchSingleTop="true" />
 </navigation>
