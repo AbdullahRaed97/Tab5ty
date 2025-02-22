@@ -99,7 +99,6 @@ MealEntity myMeal;
             public void onReady(@NonNull YouTubePlayer youTubePlayer) {
                 super.onReady(youTubePlayer);
                 String videoKey = presenter.getVideoKey(recievedMeal.getStrYoutube());
-                Log.i(TAG, "onReady: "+videoKey);
                 youTubePlayer.loadVideo(videoKey,0);
             }
         });
