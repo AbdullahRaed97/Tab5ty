@@ -7,7 +7,7 @@ import com.example.tabty.Model.Network.NetworkCallback;
 
 import java.util.List;
 
-public class HomePresenter implements NetworkCallback {
+public class HomePresenter  {
     MealsRepository myRepo;
     HomeView myView;
     public HomePresenter(MealsRepository myRepo, HomeView myView){
@@ -15,29 +15,31 @@ public class HomePresenter implements NetworkCallback {
         this.myView=myView;
     }
     public void getRemoteAllMealsByFirstLetter(String firstLetter){
-        myRepo.getAllRemoteMealByFirstLetter(this,firstLetter);
+        myRepo.getAllRemoteMealByFirstLetter(new NetworkCallback<List<Meal>>() {
+            @Override
+            public void onSuccess(List<Meal> meals) {
+                myView.showAllMealsByFirstLetter(meals);
+            }
+
+            @Override
+            public void onFailure(String errorMessage) {
+                myView.showRandomMealError(errorMessage);
+            }
+        }, firstLetter);
     }
 
     public void getRemoteRandomMeal(){
-        myRepo.getRemoteRandomMeal(this);
-    }
-    @Override
-    public void onSuccess(List<Meal> meals) {
-        myView.showAllMealsByFirstLetter(meals);
+        myRepo.getRemoteRandomMeal(new NetworkCallback<List<Meal>>(){
+
+            @Override
+            public void onSuccess(List<Meal> result) {
+                myView.showRandomMeal(result);
+            }
+            @Override
+            public void onFailure(String errorMessage) {
+                myView.showRandomMealError(errorMessage);
+            }
+        });
     }
 
-    @Override
-    public void onFailure(String errorMessage) {
-        myView.showAllMealsByFirstLetterError(errorMessage);
-    }
-
-    @Override
-    public void onRandomMealSuccess(List<Meal> meals) {
-        myView.showRandomMeal(meals);
-    }
-
-    @Override
-    public void onRandomMealFailure(String errorMessage) {
-        myView.showRandomMealError(errorMessage);
-    }
 }
