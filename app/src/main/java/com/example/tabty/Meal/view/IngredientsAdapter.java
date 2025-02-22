@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.tabty.Home.view.HomeAdapter;
 import com.example.tabty.R;
 
@@ -42,6 +44,8 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.ingredientText.setText(ingredient.get(position));
         holder.measureText.setText(measures.get(position));
+        Glide.with(context).load("https://www.themealdb.com/images/ingredients/"+ingredient.get(position)+"-Small.png")
+                .apply(new RequestOptions().override(500,500)).into(holder.ingredientImage);
     }
 
     @Override
