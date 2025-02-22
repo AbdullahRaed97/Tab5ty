@@ -5,7 +5,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import android.os.Handler;
 import android.os.Looper;
@@ -23,7 +26,7 @@ public class SplashFragment extends Fragment {
     Handler myHandler;
     SharedPreferences myPref;
     FirebaseUser user=null;
-    boolean isFirst=true;
+    NavController navController;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,14 +44,15 @@ public class SplashFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         user= FirebaseAuth.getInstance().getCurrentUser();
-        //Log.i(TAG, "onViewCreated: "+user.getEmail());
+        navController=Navigation.findNavController(view);
+
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
                     if(user==null) {
-                        Navigation.findNavController(view).navigate(R.id.action_splashFragment_to_signUpFragment);
+                       navController.navigate(R.id.action_splashFragment_to_signUpFragment);
                     } else{
-                        Navigation.findNavController(view).navigate(R.id.action_splashFragment_to_homeFragment);
+                        navController.navigate(R.id.action_splashFragment_to_homeFragment);
                     }
                 }
             }
