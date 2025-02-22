@@ -15,15 +15,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.tabty.R;
-import com.example.tabty.Utilities.FirebaseCallbak;
+import com.example.tabty.Utilities.FirebaseCallback;
 import com.example.tabty.Utilities.FirebaseManagement;
 import com.google.android.material.snackbar.Snackbar;
 
 
-public class LoginFragment extends Fragment implements FirebaseCallbak {
+public class LoginFragment extends Fragment implements FirebaseCallback {
 
     EditText emailText;
     EditText passwordText;
