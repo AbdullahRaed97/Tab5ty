@@ -4,7 +4,6 @@ public class Ingredient {
         public String idIngredient;
         public String strIngredient;
         public String strDescription;
-        public Object strType;
 
     public Ingredient() {
     }
@@ -33,13 +32,6 @@ public class Ingredient {
         this.strDescription = strDescription;
     }
 
-    public Object getStrType() {
-        return strType;
-    }
-
-    public void setStrType(Object strType) {
-        this.strType = strType;
-    }
 
     @Override
     public String toString() {
@@ -47,7 +39,6 @@ public class Ingredient {
                 "idIngredient='" + idIngredient + '\'' +
                 ", strIngredient='" + strIngredient + '\'' +
                 ", strDescription='" + strDescription + '\'' +
-                ", strType=" + strType +
                 '}';
     }
 }
