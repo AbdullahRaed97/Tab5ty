@@ -1,10 +1,11 @@
 package com.example.tabty.Model.DB;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.function.Predicate;
 
 
-public class Meal {
+public class Meal implements Serializable {
     public String idMeal;
     public String strMeal;
     public Object strDrinkAlternate;
