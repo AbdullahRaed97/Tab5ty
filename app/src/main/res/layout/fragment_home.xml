@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
     tools:context=".Home.view.HomeFragment">
-
-    <com.google.android.material.navigation.NavigationView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:menu="@menu/my_menu"
-        android:layout_gravity="start"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -32,8 +26,8 @@
             android:id="@+id/todayMeal_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:layout_marginStart="30dp"
+            android:layout_marginTop="15dp"
             android:text="@string/today_random_meal"
             android:textColor="@color/Primary"
             android:textSize="20sp"
@@ -117,23 +111,22 @@
             app:layout_constraintBottom_toTopOf="@+id/todayMeal_tv"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="293dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:text="@string/selection_of_meals_for_cozy_day"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
+            android:gravity="center"
+            android:text="@string/selection_of_meals_for_cozy_day"
             android:textColor="@color/Primary"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:gravity="center"
             app:layout_constraintBottom_toTopOf="@+id/home_recyclerView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/home_cardView" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.drawerlayout.widget.DrawerLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
