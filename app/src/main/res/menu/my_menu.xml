@@ -2,17 +2,25 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Logout"
+    <item android:title="@string/logout"
           android:id="@+id/menuLogout"
           android:icon="@drawable/logout"/>
-    <item android:title="Favourite"
+
+    <item android:title="@string/favourite"
           android:icon="@drawable/favourite"
           android:id="@+id/menuFavourite"
         />
-    <item android:title="Profile"
+
+    <item android:title="@string/profile"
           android:id="@+id/menuProfile"
           android:icon="@drawable/profile"/>
-    <item android:title="Calendar"
+
+    <item android:title="@string/calendar"
           android:id="@+id/menuCalendar"
           android:icon="@drawable/calendar"/>
+
+    <item android:title="@string/home"
+        android:id="@+id/menuHome"
+        android:icon="@drawable/home"/>
+
 </menu>
