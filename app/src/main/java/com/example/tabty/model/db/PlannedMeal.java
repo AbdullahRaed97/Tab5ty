@@ -2,8 +2,10 @@ package com.example.tabty.model.db;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity(tableName = "PlannedMeal")
@@ -16,14 +18,15 @@ public class PlannedMeal {
     public String strArea;
     public String strInstructions;
     public String strMealThumb;
-    Date mealDate;
-    public PlannedMeal(Meal meal){
+    LocalDate mealDate;
+    public PlannedMeal(Meal meal , LocalDate mealDate){
         this.idMeal=meal.getIdMeal();
         this.strMeal=meal.getStrMeal();
         this.strArea=meal.getStrArea();
         this.strMealThumb=meal.getStrMealThumb();
         this.strCategory=meal.getStrCategory();
         this.strInstructions=meal.getStrInstructions();
+        this.mealDate=mealDate;
     }
     public PlannedMeal(){
 
@@ -77,11 +80,25 @@ public class PlannedMeal {
         this.strMealThumb = strMealThumb;
     }
 
-    public Date getMealDate() {
+
+    public LocalDate getMealDate() {
         return mealDate;
     }
 
-    public void setMealDate(Date mealDate) {
+    public void setMealDate(LocalDate mealDate) {
         this.mealDate = mealDate;
+    }
+
+    @Override
+    public String toString() {
+        return "PlannedMeal{" +
+                "idMeal='" + idMeal + '\'' +
+                ", strMeal='" + strMeal + '\'' +
+                ", strCategory='" + strCategory + '\'' +
+                ", strArea='" + strArea + '\'' +
+                ", strInstructions='" + strInstructions + '\'' +
+                ", strMealThumb='" + strMealThumb + '\'' +
+                ", mealDate=" + mealDate +
+                '}';
     }
 }
