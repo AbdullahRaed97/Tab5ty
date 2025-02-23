@@ -1,20 +1,26 @@
 package com.example.tabty.utilities;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
 import androidx.room.TypeConverter;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class DatabaseConverters {
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @TypeConverter
-    public static Long dateSerialization(Date date){
+    public static long dateSerialization(LocalDate date){
         if(date == null)
-            return null;
-        return date.getTime();
+            return 0;
+        return date.toEpochDay();
     }
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @TypeConverter
-    public static Date dateDeserialization(Long value){
+    public static LocalDate dateDeserialization(Long value){
             if(value == null)
                 return null;
-            return new Date(value);
+            return  LocalDate.ofEpochDay(value);
     }
 }
