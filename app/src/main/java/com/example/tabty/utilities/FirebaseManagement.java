@@ -1,4 +1,4 @@
-package com.example.tabty.Utilities;
+package com.example.tabty.utilities;
 
 import androidx.annotation.NonNull;
 
