@@ -22,4 +22,5 @@
     <string name="home">Home</string>
     <string name="warningMessage">Are you sure you want to delete this favourite meal ?</string>
     <string name="delete">Delete</string>
+    <string name="welcomeCalendar">What’s cooking today? Check your Calendar! 🍳</string>
 </resources>
