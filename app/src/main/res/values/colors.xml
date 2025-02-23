@@ -6,8 +6,8 @@
     <color name="onPrimary">#ffffff</color>
     <color name="Secondary">#46645f</color>
     <color name="onSecondary">#ffffff</color>
-    <color name="Tertiary">#BFBFBF</color>
-    <color name="onTeriary">#000000</color>
+    <color name="Tertiary">#D7D7D7</color>
+    <color name="onTeriary">#FF7B00</color>
     <color name="Surface">#f4fbf8</color>
     <color name="onSurface">#161d1c</color>
 </resources>
