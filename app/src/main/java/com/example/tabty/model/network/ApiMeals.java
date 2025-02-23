@@ -1,9 +1,9 @@
-package com.example.tabty.Model.Network;
+package com.example.tabty.model.network;
 
-import com.example.tabty.Model.Network.POJOs.CategoriesResponse;
-import com.example.tabty.Model.Network.POJOs.CountriesResponse;
-import com.example.tabty.Model.Network.POJOs.IngredientResponse;
-import com.example.tabty.Model.Network.POJOs.MealResponse;
+import com.example.tabty.model.network.POJOs.CategoriesResponse;
+import com.example.tabty.model.network.POJOs.CountriesResponse;
+import com.example.tabty.model.network.POJOs.IngredientResponse;
+import com.example.tabty.model.network.POJOs.MealResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
