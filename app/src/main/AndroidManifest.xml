@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Tabخty"
         tools:targetApi="31">
         <activity
-            android:name=".Common.view.MainActivity"
+            android:name=".common.view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
