@@ -1,4 +1,4 @@
-package com.example.tabty.Model.DB;
+package com.example.tabty.model.db;
 
 import android.content.Context;
 

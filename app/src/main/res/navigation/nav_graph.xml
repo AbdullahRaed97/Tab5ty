@@ -47,7 +47,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.tabty.Home.view.HomeFragment"
+        android:name="com.example.tabty.home.view.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -59,11 +59,11 @@
     </fragment>
     <fragment
         android:id="@+id/mealFragment"
-        android:name="com.example.tabty.Meal.view.MealFragment"
+        android:name="com.example.tabty.meal.view.MealFragment"
         android:label="MealFragment" >
         <argument
             android:name="meal"
-            app:argType="com.example.tabty.Model.DB.Meal" />
+            app:argType="com.example.tabty.model.db.Meal" />
     </fragment>
     <action
         android:id="@+id/action_global_homeFragment"
@@ -75,7 +75,7 @@
         app:launchSingleTop="true" />
     <fragment
         android:id="@+id/favouriteFragment"
-        android:name="com.example.tabty.FavouriteFragment"
+        android:name="com.example.tabty.favourite.view.FavouriteFragment"
         android:label="fragment_favourite"
         tools:layout="@layout/fragment_favourite" />
     <action

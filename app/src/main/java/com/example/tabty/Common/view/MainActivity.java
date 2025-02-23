@@ -1,4 +1,4 @@
-package com.example.tabty.Common.View;
+package com.example.tabty.Common.view;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -11,7 +11,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 import com.example.tabty.R;
-import com.example.tabty.Utilities.FirebaseManagement;
+import com.example.tabty.utilities.FirebaseManagement;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {

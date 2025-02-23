@@ -1,9 +1,9 @@
-package com.example.tabty.Home.presenter;
+package com.example.tabty.home.presenter;
 
-import com.example.tabty.Home.view.HomeView;
-import com.example.tabty.Model.DB.Meal;
-import com.example.tabty.Model.MealsRepository;
-import com.example.tabty.Model.Network.NetworkCallback;
+import com.example.tabty.home.view.HomeView;
+import com.example.tabty.model.db.Meal;
+import com.example.tabty.model.MealsRepository;
+import com.example.tabty.model.network.NetworkCallback;
 
 import java.util.List;
 

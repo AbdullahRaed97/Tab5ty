@@ -1,4 +1,4 @@
-package com.example.tabty.Home.view;
+package com.example.tabty.home.view;
 
 import android.os.Bundle;
 
@@ -13,24 +13,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.tabty.Home.presenter.HomePresenter;
-import com.example.tabty.Meal.view.MealFragment;
-import com.example.tabty.Model.DB.Meal;
-import com.example.tabty.Model.DB.MealsLocalDataSource;
-import com.example.tabty.Model.MealsRepository;
-import com.example.tabty.Model.Network.MealRemoteDataSource;
+import com.example.tabty.home.presenter.HomePresenter;
+import com.example.tabty.model.db.Meal;
+import com.example.tabty.model.db.MealsLocalDataSource;
+import com.example.tabty.model.MealsRepository;
+import com.example.tabty.model.network.MealRemoteDataSource;
 import com.example.tabty.R;
-import com.example.tabty.Utilities.FirebaseManagement;
 import com.google.android.material.snackbar.Snackbar;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment implements OnImageClickedListener ,HomeView{

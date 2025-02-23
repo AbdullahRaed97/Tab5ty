@@ -1,4 +1,4 @@
-package com.example.tabty.Home.view;
+package com.example.tabty.home.view;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,10 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.tabty.Model.DB.Meal;
+import com.example.tabty.model.db.Meal;
 import com.example.tabty.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{

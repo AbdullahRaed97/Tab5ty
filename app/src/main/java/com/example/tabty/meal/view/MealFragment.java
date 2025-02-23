@@ -1,6 +1,5 @@
-package com.example.tabty.Meal.view;
+package com.example.tabty.meal.view;
 
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,30 +13,23 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebChromeClient;
-import android.webkit.WebView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.MediaController;
 import android.widget.TextView;
-import android.widget.VideoView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.tabty.Meal.presenter.MealPresenter;
-import com.example.tabty.Model.DB.Meal;
-import com.example.tabty.Model.DB.MealEntity;
-import com.example.tabty.Model.DB.MealsLocalDataSource;
-import com.example.tabty.Model.MealsRepository;
-import com.example.tabty.Model.Network.MealRemoteDataSource;
-import com.example.tabty.Model.Network.POJOs.Ingredient;
+import com.example.tabty.meal.presenter.MealPresenter;
+import com.example.tabty.model.db.Meal;
+import com.example.tabty.model.db.MealEntity;
+import com.example.tabty.model.db.MealsLocalDataSource;
+import com.example.tabty.model.MealsRepository;
+import com.example.tabty.model.network.MealRemoteDataSource;
 import com.example.tabty.R;
 import com.google.android.material.snackbar.Snackbar;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
-
-import java.util.List;
 
 
 public class MealFragment extends Fragment {

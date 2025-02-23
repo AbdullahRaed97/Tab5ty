@@ -1,4 +1,4 @@
-package com.example.tabty.Model.DB;
+package com.example.tabty.model.db;
 
 import java.io.Serializable;
 import java.util.ArrayList;

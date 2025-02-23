@@ -1,4 +1,4 @@
-package com.example.tabty.Meal.view;
+package com.example.tabty.meal.view;
 
 public interface OnFavouriteClickListener {
 }

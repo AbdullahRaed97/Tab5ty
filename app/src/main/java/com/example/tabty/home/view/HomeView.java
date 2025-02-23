@@ -1,6 +1,6 @@
-package com.example.tabty.Home.view;
+package com.example.tabty.home.view;
 
-import com.example.tabty.Model.DB.Meal;
+import com.example.tabty.model.db.Meal;
 
 import java.util.List;
 

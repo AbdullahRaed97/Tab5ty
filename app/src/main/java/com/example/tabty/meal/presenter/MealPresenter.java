@@ -1,9 +1,7 @@
-package com.example.tabty.Meal.presenter;
+package com.example.tabty.meal.presenter;
 
-import com.example.tabty.Meal.view.MealView;
-import com.example.tabty.Model.DB.Meal;
-import com.example.tabty.Model.DB.MealEntity;
-import com.example.tabty.Model.MealsRepository;
+import com.example.tabty.model.db.MealEntity;
+import com.example.tabty.model.MealsRepository;
 
 import kotlin.text.MatchResult;
 import kotlin.text.Regex;

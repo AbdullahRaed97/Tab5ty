@@ -1,4 +1,4 @@
-package com.example.tabty.Model.DB;
+package com.example.tabty.model.db;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
@@ -6,7 +6,7 @@ import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.util.ArrayList;
-import java.util.function.Predicate;
+
 @Entity(tableName = "Meals")
 public class MealEntity {
         @PrimaryKey

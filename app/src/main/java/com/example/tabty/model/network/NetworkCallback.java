@@ -1,8 +1,4 @@
-package com.example.tabty.Model.Network;
-
-import com.example.tabty.Model.DB.Meal;
-
-import java.util.List;
+package com.example.tabty.model.network;
 
 public interface NetworkCallback<T> {
     public  void onSuccess(T result);

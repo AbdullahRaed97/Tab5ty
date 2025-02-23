@@ -17,8 +17,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.tabty.R;
-import com.example.tabty.Utilities.FirebaseCallback;
-import com.example.tabty.Utilities.FirebaseManagement;
+import com.example.tabty.utilities.FirebaseCallback;
+import com.example.tabty.utilities.FirebaseManagement;
 import com.google.android.material.snackbar.Snackbar;
 
 

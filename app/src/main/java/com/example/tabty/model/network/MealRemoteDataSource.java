@@ -1,9 +1,9 @@
-package com.example.tabty.Model.Network;
+package com.example.tabty.model.network;
 
-import com.example.tabty.Model.DB.Meal;
-import com.example.tabty.Model.Network.POJOs.Ingredient;
-import com.example.tabty.Model.Network.POJOs.IngredientResponse;
-import com.example.tabty.Model.Network.POJOs.MealResponse;
+import com.example.tabty.model.db.Meal;
+import com.example.tabty.model.network.POJOs.Ingredient;
+import com.example.tabty.model.network.POJOs.IngredientResponse;
+import com.example.tabty.model.network.POJOs.MealResponse;
 
 import java.util.List;
 

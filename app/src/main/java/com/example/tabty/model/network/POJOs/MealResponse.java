@@ -1,6 +1,6 @@
-package com.example.tabty.Model.Network.POJOs;
+package com.example.tabty.model.network.POJOs;
 
-import com.example.tabty.Model.DB.Meal;
+import com.example.tabty.model.db.Meal;
 
 import java.util.ArrayList;
 

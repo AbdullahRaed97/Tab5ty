@@ -1,13 +1,13 @@
-package com.example.tabty.Model;
+package com.example.tabty.model;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.tabty.Model.DB.Meal;
-import com.example.tabty.Model.DB.MealEntity;
-import com.example.tabty.Model.DB.MealsLocalDataSource;
-import com.example.tabty.Model.Network.MealRemoteDataSource;
-import com.example.tabty.Model.Network.NetworkCallback;
-import com.example.tabty.Model.Network.POJOs.Ingredient;
+import com.example.tabty.model.db.Meal;
+import com.example.tabty.model.db.MealEntity;
+import com.example.tabty.model.db.MealsLocalDataSource;
+import com.example.tabty.model.network.MealRemoteDataSource;
+import com.example.tabty.model.network.NetworkCallback;
+import com.example.tabty.model.network.POJOs.Ingredient;
 
 import java.util.List;
 

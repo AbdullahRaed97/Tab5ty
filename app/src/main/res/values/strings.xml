@@ -20,4 +20,6 @@
     <string name="profile">Profile</string>
     <string name="calendar">Calendar</string>
     <string name="home">Home</string>
+    <string name="warningMessage">Are you sure you want to delete this favourite meal ?</string>
+    <string name="delete">Delete</string>
 </resources>
