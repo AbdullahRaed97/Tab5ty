@@ -20,10 +20,13 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.tabty.meal.presenter.MealPresenter;
+import com.example.tabty.model.PlannedMealRepository;
 import com.example.tabty.model.db.Meal;
 import com.example.tabty.model.db.MealEntity;
 import com.example.tabty.model.db.MealsLocalDataSource;
 import com.example.tabty.model.MealsRepository;
+import com.example.tabty.model.db.PlannedMeal;
+import com.example.tabty.model.db.PlannedMealLocalDataSource;
 import com.example.tabty.model.network.MealRemoteDataSource;
 import com.example.tabty.R;
 import com.google.android.material.snackbar.Snackbar;
@@ -62,6 +65,7 @@ MealEntity myMeal;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         mealImage=view.findViewById(R.id.meal_iv);
         favBtn=view.findViewById(R.id.mealFavButton);
         calendarBtn=view.findViewById(R.id.mealCalendarButton);
@@ -72,8 +76,10 @@ MealEntity myMeal;
         recyclerView=view.findViewById(R.id.ingredientRecyclerView);
         youtubeView=view.findViewById(R.id.youtubeView);
         myView=view;
+
         MealsRepository myRepo = MealsRepository.getInstance(MealRemoteDataSource.getInstance(),new MealsLocalDataSource(getContext()));
-        presenter = new MealPresenter(myRepo);
+        PlannedMealRepository plannedMealRepo = PlannedMealRepository.getInstance(new PlannedMealLocalDataSource(requireContext()));
+        presenter = new MealPresenter(myRepo,plannedMealRepo);
 
         //receive clicked meal from home
         Meal recievedMeal = MealFragmentArgs.fromBundle(getArguments()).getMeal();
@@ -91,7 +97,7 @@ MealEntity myMeal;
             public void onReady(@NonNull YouTubePlayer youTubePlayer) {
                 super.onReady(youTubePlayer);
                 String videoKey = presenter.getVideoKey(recievedMeal.getStrYoutube());
-                youTubePlayer.loadVideo(videoKey,0);
+                youTubePlayer.cueVideo(videoKey,0);
             }
         });
 
@@ -100,6 +106,12 @@ MealEntity myMeal;
             presenter.insertLocalMeal(myMeal);
             Log.i(TAG, "onViewCreated: "+myMeal);
         });
+
+        calendarBtn.setOnClickListener(v->{
+            presenter.insertLocalPlannedMeal(recievedMeal,requireContext());
+            Snackbar.make(myView,"Meal is added to Calendar successfully",Snackbar.LENGTH_SHORT).show();
+        });
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         layoutManager.setOrientation(GridLayoutManager.HORIZONTAL);
