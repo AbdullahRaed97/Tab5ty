@@ -1,4 +1,4 @@
-package com.example.tabty.Common.view;
+package com.example.tabty.common.view;
 
 import android.os.Bundle;
 import android.util.Log;
