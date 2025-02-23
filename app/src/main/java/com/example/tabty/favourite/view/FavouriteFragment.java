@@ -25,7 +25,7 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FavouriteFragment extends Fragment implements OnDeletClickListener {
+public class FavouriteFragment extends Fragment implements OnDeleteClickListener {
 
     FavouriteAdapter myAdapter;
     FavouritePresenter presenter;

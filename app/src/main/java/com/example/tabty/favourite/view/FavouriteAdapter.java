@@ -21,9 +21,9 @@ import java.util.List;
 public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.ViewHolder> {
     private Context context;
     private List<MealEntity> meals;
-    OnDeletClickListener listener;
+    OnDeleteClickListener listener;
 
-    public FavouriteAdapter(Context context, List<MealEntity> meals, OnDeletClickListener listener) {
+    public FavouriteAdapter(Context context, List<MealEntity> meals, OnDeleteClickListener listener) {
         this.context = context;
         this.meals = meals;
         this.listener = listener;
