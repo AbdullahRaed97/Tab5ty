@@ -1,4 +1,4 @@
-package com.example.tabty.Model.Network.POJOs;
+package com.example.tabty.model.network.POJOs;
 
 public class Country {
     public String strArea;
