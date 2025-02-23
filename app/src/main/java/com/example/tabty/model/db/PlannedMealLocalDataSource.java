@@ -1,9 +1,7 @@
 package com.example.tabty.model.db;
 
 import android.content.Context;
-
 import androidx.lifecycle.LiveData;
-
 import java.util.Date;
 import java.util.List;
 
