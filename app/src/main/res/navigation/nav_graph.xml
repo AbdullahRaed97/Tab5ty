@@ -84,7 +84,7 @@
         app:launchSingleTop="true" />
     <fragment
         android:id="@+id/calendarFragment"
-        android:name="com.example.tabty.CalendarFragment"
+        android:name="com.example.tabty.calendar.view.CalendarFragment"
         android:label="fragment_calendar"
         tools:layout="@layout/fragment_calendar" />
     <action
