@@ -1,10 +1,14 @@
 package com.example.tabty.model;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
 import androidx.lifecycle.LiveData;
 
 import com.example.tabty.model.db.PlannedMeal;
 import com.example.tabty.model.db.PlannedMealLocalDataSource;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -26,7 +30,11 @@ public class PlannedMealRepository {
         localDataSource.insertPlannedMeal(plannedMeal);
     }
 
-    public LiveData<List<PlannedMeal>> getAllLocalPlannedMealByDate(Date date){
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public LiveData<List<PlannedMeal>> getAllLocalPlannedMealByDate(LocalDate date){
         return localDataSource.getAllPlannedMealByDate(date);
+    }
+    public void deletePlannedMeal(PlannedMeal meal){
+        localDataSource.deletePlannedMeal(meal);
     }
 }
