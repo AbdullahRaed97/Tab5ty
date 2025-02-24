@@ -56,5 +56,9 @@ dependencies {
     implementation (libs.androidx.room.runtime)
     annotationProcessor (libs.room.compiler)
     implementation (libs.core)
+    implementation ("io.reactivex.rxjava3:rxandroid:3.0.2")
+    implementation ("io.reactivex.rxjava3:rxjava:3.1.6")
+    implementation ("com.github.akarnokd:rxjava3-retrofit-adapter:3.0.0")
+    implementation("androidx.room:room-rxjava3:2.6.1")
 }
 

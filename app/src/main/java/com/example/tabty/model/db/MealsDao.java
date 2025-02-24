@@ -8,12 +8,16 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import java.util.List;
+
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.Single;
+
 @Dao
 public interface MealsDao {
     @Query("select * from Meals")
-    LiveData<List<MealEntity>> getAllMeals();
+    Single<List<MealEntity>> getAllMeals();
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    void insertMeal(MealEntity meal);
+    Completable insertMeal(MealEntity meal);
     @Delete
-    void deleteMeal(MealEntity meal);
+    Completable deleteMeal(MealEntity meal);
 }

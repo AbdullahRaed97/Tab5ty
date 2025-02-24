@@ -9,6 +9,9 @@ import com.example.tabty.model.network.NetworkCallback;
 import com.example.tabty.model.network.POJOs.Ingredient;
 import java.util.List;
 
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.Single;
+
 public class MealsRepository {
     MealRemoteDataSource remoteDataSource;
     MealsLocalDataSource localDataSource;
@@ -23,13 +26,13 @@ public class MealsRepository {
             instance = new MealsRepository(remoteDataSource,localDataSource);
         return instance;
     }
-    public void insertLocalMeal(MealEntity meal){
-        localDataSource.insertMeal(meal);
+    public Completable insertLocalMeal(MealEntity meal){
+        return localDataSource.insertMeal(meal);
     }
-    public void deleteLocalMeal(MealEntity meal){
-        localDataSource.deleteMeal(meal);
+    public Completable deleteLocalMeal(MealEntity meal){
+        return localDataSource.deleteMeal(meal);
     }
-    public LiveData<List<MealEntity>> getAllLocalMeals(){
+    public Single<List<MealEntity>> getAllLocalMeals(){
         return localDataSource.getAllMeals();
     }
     public void getAllRemoteMealByFirstLetter(NetworkCallback<List<Meal>> networkCallback,String firstLetter){

@@ -12,6 +12,9 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.Single;
+
 public class PlannedMealRepository {
     PlannedMealLocalDataSource localDataSource;
     private static PlannedMealRepository instance = null;
@@ -26,15 +29,15 @@ public class PlannedMealRepository {
         return instance;
     }
 
-    public void insertLocalPlannedMeal(PlannedMeal plannedMeal){
-        localDataSource.insertPlannedMeal(plannedMeal);
+    public Completable insertLocalPlannedMeal(PlannedMeal plannedMeal){
+        return localDataSource.insertPlannedMeal(plannedMeal);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public LiveData<List<PlannedMeal>> getAllLocalPlannedMealByDate(LocalDate date){
+    public Single<List<PlannedMeal>> getAllLocalPlannedMealByDate(LocalDate date){
         return localDataSource.getAllPlannedMealByDate(date);
     }
-    public void deletePlannedMeal(PlannedMeal meal){
-        localDataSource.deletePlannedMeal(meal);
+    public Completable deletePlannedMeal(PlannedMeal meal){
+        return localDataSource.deletePlannedMeal(meal);
     }
 }

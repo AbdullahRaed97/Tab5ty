@@ -13,35 +13,27 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.Single;
+
 public class PlannedMealLocalDataSource {
     PlannedMealDao dao;
 
-   public PlannedMealLocalDataSource(Context context){
-       PlannedMealDatabase plannedMealDatabase =PlannedMealDatabase.getInstance(context);
-       dao = plannedMealDatabase.getPlannedMealDao();
-   }
+    public PlannedMealLocalDataSource(Context context) {
+        PlannedMealDatabase plannedMealDatabase = PlannedMealDatabase.getInstance(context);
+        dao = plannedMealDatabase.getPlannedMealDao();
+    }
 
-   public void insertPlannedMeal(PlannedMeal plannedMeal){
-       new Thread() {
-           @Override
-           public void run() {
-               super.run();
-               dao.insertPlannedMeal(plannedMeal);
-           }
-       }.start();
-   }
+    public Completable insertPlannedMeal(PlannedMeal plannedMeal) {
+        return dao.insertPlannedMeal(plannedMeal);
+    }
 
-   @RequiresApi(api = Build.VERSION_CODES.O)
-   public LiveData<List<PlannedMeal>> getAllPlannedMealByDate(LocalDate date){
-      return dao.getAllPlannedMeal(date);
-   }
-   public void deletePlannedMeal(PlannedMeal meal){
-       new Thread(){
-           @Override
-           public void run() {
-               super.run();
-               dao.deletePlannedMeal(meal);
-           }
-       }.start();
-   }
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public Single<List<PlannedMeal>> getAllPlannedMealByDate(LocalDate date) {
+        return dao.getAllPlannedMeal(date);
+    }
+
+    public Completable deletePlannedMeal(PlannedMeal meal) {
+        return dao.deletePlannedMeal(meal);
+    }
 }

@@ -22,20 +22,21 @@ import com.example.tabty.calendar.presenter.CalendarPresenter;
 import com.example.tabty.model.PlannedMealRepository;
 import com.example.tabty.model.db.PlannedMeal;
 import com.example.tabty.model.db.PlannedMealLocalDataSource;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class CalendarFragment extends Fragment implements OnCalendarDeleteClickListener {
+public class CalendarFragment extends Fragment implements OnCalendarDeleteClickListener , com.example.tabty.calendar.view.CalendarView {
     CalendarView calendarView;
     CalendarPresenter presenter;
     PlannedMealRepository myRepo;
     View myView;
     RecyclerView recyclerView;
     CalendarAdapter myAdapter;
-    LiveData<List<PlannedMeal>> plannedMeals;
+    List<PlannedMeal> plannedMeals;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,33 +56,43 @@ public class CalendarFragment extends Fragment implements OnCalendarDeleteClickL
         recyclerView=view.findViewById(R.id.calRecyclerView);
         calendarView = view.findViewById(R.id.calendarView);
         myView=view;
+
         myAdapter = new CalendarAdapter(requireContext(),new ArrayList<>(),this);
         myRepo = PlannedMealRepository.getInstance(new PlannedMealLocalDataSource(requireContext()));
-        presenter = new CalendarPresenter(myRepo);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        presenter = new CalendarPresenter(myRepo,this);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(myAdapter);
+
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 Calendar selectedDate = Calendar.getInstance();
-                plannedMeals = presenter.getAllPlannedMealsByDate(LocalDate.of(year,month,dayOfMonth));
+
+                presenter.getAllPlannedMealsByDate(LocalDate.of(year,month,dayOfMonth));
                 Log.i("TAG", "onSelectedDayChange: "+selectedDate.getTime());
                 Log.i("TAG", "onSelectedDayChange: "+plannedMeals);
-                plannedMeals.observe(requireActivity(), new Observer<List<PlannedMeal>>() {
-                    @Override
-                    public void onChanged(List<PlannedMeal> plannedMeals) {
-                        Log.i("TAG", "onChanged: "+plannedMeals.toString());
-                        myAdapter.setData(plannedMeals);
-                    }
-                });
             }
         });
     }
     @Override
     public void onDeleteClickAction(PlannedMeal meal) {
         presenter.deleteLocalMeal(meal);
+        plannedMeals.remove(meal);
+        myAdapter.setData(plannedMeals);
+    }
+
+    @Override
+    public void onPlannedMealListSuccess(List<PlannedMeal> plannedMeals) {
+        this.plannedMeals=plannedMeals;
+        myAdapter.setData(plannedMeals);
+    }
+
+    @Override
+    public void onPlannedMealFailure(String errorMessage) {
+        Snackbar.make(myView,errorMessage,Snackbar.LENGTH_SHORT).show();
     }
 }

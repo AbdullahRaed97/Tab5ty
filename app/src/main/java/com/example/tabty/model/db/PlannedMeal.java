@@ -8,9 +8,8 @@ import androidx.room.PrimaryKey;
 import java.time.LocalDate;
 import java.util.Date;
 
-@Entity(tableName = "PlannedMeal")
+@Entity(tableName = "PlannedMeal",primaryKeys = {"idMeal","mealDate"})
 public class PlannedMeal {
-    @PrimaryKey
     @NonNull
     public String idMeal;
     public String strMeal;
@@ -18,6 +17,7 @@ public class PlannedMeal {
     public String strArea;
     public String strInstructions;
     public String strMealThumb;
+    @NonNull
     LocalDate mealDate;
     public PlannedMeal(Meal meal , LocalDate mealDate){
         this.idMeal=meal.getIdMeal();

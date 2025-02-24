@@ -25,19 +25,18 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FavouriteFragment extends Fragment implements OnDeleteClickListener {
+public class FavouriteFragment extends Fragment implements OnDeleteClickListener ,FavouriteView{
 
     FavouriteAdapter myAdapter;
     FavouritePresenter presenter;
     MealsRepository myRepo;
-    LiveData<List<MealEntity>> meals;
     View myView;
     Dialog myDialog;
-
     Button cancelButton;
     Button deleteButton;
     RecyclerView recyclerView;
     MealEntity myMeal;
+    List<MealEntity> mealList;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +53,7 @@ public class FavouriteFragment extends Fragment implements OnDeleteClickListener
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = view.findViewById(R.id.favRecyclerView);
-
+        myView=view;
         myDialog = new Dialog(requireContext());
         myDialog.setContentView(R.layout.custom_dialog);
         myDialog.setCancelable(false);
@@ -64,22 +63,17 @@ public class FavouriteFragment extends Fragment implements OnDeleteClickListener
         cancelButton.setOnClickListener(v->{
             myDialog.cancel();
         });
+
         deleteButton.setOnClickListener(v->{
             presenter.deleteLocalMeal(myMeal);
-            Snackbar.make(myView,"Your meal has been deleted successfully",Snackbar.LENGTH_SHORT).show();
+            mealList.remove(myMeal);
+            myAdapter.setData(mealList);
             myDialog.cancel();
         });
 
-        myRepo=MealsRepository.getInstance(MealRemoteDataSource.getInstance(),new MealsLocalDataSource(getContext()));
-        presenter = new FavouritePresenter(myRepo);
-        meals= presenter.getAllLocalMeals();
-
-        meals.observe(requireActivity(), new Observer<List<MealEntity>>() {
-            @Override
-            public void onChanged(List<MealEntity> mealEntities) {
-                myAdapter.setData(mealEntities);
-            }
-        });
+        myRepo =MealsRepository.getInstance(MealRemoteDataSource.getInstance(),new MealsLocalDataSource(getContext()));
+        presenter = new FavouritePresenter(myRepo,this);
+         presenter.getAllLocalMeals();
 
         myAdapter = new FavouriteAdapter(getContext(),new ArrayList<>(),this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
@@ -92,5 +86,26 @@ public class FavouriteFragment extends Fragment implements OnDeleteClickListener
     public void onDeleteClickAction(MealEntity meal) {
         myMeal=meal;
         myDialog.show();
+    }
+
+    @Override
+    public void onFavouriteMealListSuccess(List<MealEntity> mealList) {
+        this.mealList=mealList;
+        myAdapter.setData(mealList);
+    }
+
+    @Override
+    public void onFavouriteMealListFailure(String errorMessage) {
+        Snackbar.make(myView,errorMessage,Snackbar.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onDeleteMealSuccess(String success) {
+        Snackbar.make(myView,success,Snackbar.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onDeleteMealFailure(String fail) {
+        Snackbar.make(myView,fail,Snackbar.LENGTH_SHORT).show();
     }
 }

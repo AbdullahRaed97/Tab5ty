@@ -6,31 +6,22 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.Single;
+
 public class MealsLocalDataSource {
     MealsDao dao;
     public  MealsLocalDataSource(Context context){
         MealsDataBase mealsDataBase = MealsDataBase.getInstance(context);
         dao = mealsDataBase.getMealsDao();
     }
-    public void insertMeal(MealEntity meal){
-        new Thread(){
-            @Override
-            public void run() {
-                super.run();
-                dao.insertMeal(meal);
-            }
-        }.start();
+    public Completable insertMeal(MealEntity meal){
+       return dao.insertMeal(meal);
     }
-    public void deleteMeal(MealEntity meal){
-        new Thread(){
-            @Override
-            public void run() {
-                super.run();
-                dao.deleteMeal(meal);
-            }
-        }.start();
+    public Completable deleteMeal(MealEntity meal){
+       return dao.deleteMeal(meal);
     }
-    public LiveData<List<MealEntity>> getAllMeals(){
+    public Single<List<MealEntity>> getAllMeals(){
         return dao.getAllMeals();
     }
 }

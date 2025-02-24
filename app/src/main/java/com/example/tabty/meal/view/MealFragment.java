@@ -35,7 +35,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.Abs
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
 
-public class MealFragment extends Fragment {
+public class MealFragment extends Fragment implements MealView {
 ImageView mealImage;
 ImageButton favBtn;
 ImageButton calendarBtn;
@@ -79,7 +79,7 @@ MealEntity myMeal;
 
         MealsRepository myRepo = MealsRepository.getInstance(MealRemoteDataSource.getInstance(),new MealsLocalDataSource(getContext()));
         PlannedMealRepository plannedMealRepo = PlannedMealRepository.getInstance(new PlannedMealLocalDataSource(requireContext()));
-        presenter = new MealPresenter(myRepo,plannedMealRepo);
+        presenter = new MealPresenter(myRepo,plannedMealRepo,this);
 
         //receive clicked meal from home
         Meal recievedMeal = MealFragmentArgs.fromBundle(getArguments()).getMeal();
@@ -102,14 +102,12 @@ MealEntity myMeal;
         });
 
         favBtn.setOnClickListener(v->{
-            Snackbar.make(myView,"Meal is Added to Favourite",Snackbar.LENGTH_SHORT).show();
             presenter.insertLocalMeal(myMeal);
             Log.i(TAG, "onViewCreated: "+myMeal);
         });
 
         calendarBtn.setOnClickListener(v->{
             presenter.insertLocalPlannedMeal(recievedMeal,requireContext());
-            Snackbar.make(myView,"Meal is added to Calendar successfully",Snackbar.LENGTH_SHORT).show();
         });
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
@@ -117,5 +115,25 @@ MealEntity myMeal;
         layoutManager.setOrientation(GridLayoutManager.HORIZONTAL);
         myAdapter=new IngredientsAdapter(getContext(),recievedMeal.getIngredients(),recievedMeal.getMeasures());
         recyclerView.setAdapter(myAdapter);
+    }
+
+    @Override
+    public void onInsertMealSuccess(String success) {
+        Snackbar.make(myView,success,Snackbar.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onInsertMealFailure(String errorMessage) {
+        Snackbar.make(myView,errorMessage,Snackbar.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onInsertPlannedMealSuccess(String success) {
+        Snackbar.make(myView,success,Snackbar.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void OnInsertPlannedMealFailure(String errorMessage) {
+        Snackbar.make(myView,errorMessage,Snackbar.LENGTH_SHORT).show();
     }
 }

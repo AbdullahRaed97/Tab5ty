@@ -11,12 +11,15 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.Single;
+
 @Dao
 public interface PlannedMealDao {
     @Insert(onConflict = OnConflictStrategy.NONE)
-    public void insertPlannedMeal(PlannedMeal meal);
+     Completable insertPlannedMeal(PlannedMeal meal);
     @Query("select * from PlannedMeal where mealDate = :date")
-    public LiveData<List<PlannedMeal>>getAllPlannedMeal(LocalDate date);
+    Single<List<PlannedMeal>> getAllPlannedMeal(LocalDate date);
     @Delete
-    public void deletePlannedMeal(PlannedMeal meal);
+     Completable deletePlannedMeal(PlannedMeal meal);
 }
