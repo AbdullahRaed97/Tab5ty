@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -30,8 +31,7 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.List;
 
 public class HomeFragment extends Fragment implements OnImageClickedListener ,HomeView{
-
-    EditText searchbar;
+    ImageButton menuButton;
     ImageView randomMeal_iv;
     TextView instructionsText;
     RecyclerView recyclerView;
@@ -59,12 +59,13 @@ public class HomeFragment extends Fragment implements OnImageClickedListener ,Ho
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         homeView=view;
-        searchbar=view.findViewById(R.id.searchBar);
         randomMeal_iv=view.findViewById(R.id.random_meal_iv);
         instructionsText=view.findViewById(R.id.home_instruction_tv);
         recyclerView=view.findViewById(R.id.home_recyclerView);
         randomMeal_title=view.findViewById(R.id.random_meal_tv);
         home_Instruction_tv=view.findViewById(R.id.home_instruction_tv);
+        menuButton=view.findViewById(R.id.homeMenuButton);
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         layoutManager.setOrientation(GridLayoutManager.HORIZONTAL);

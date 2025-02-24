@@ -22,5 +22,8 @@
     <item android:title="@string/home"
         android:id="@+id/menuHome"
         android:icon="@drawable/home"/>
+    <item android:title="@string/searchMenu"
+        android:id="@+id/menuSearch"
+        android:icon="@drawable/search"/>
 
 </menu>

@@ -42,12 +42,14 @@ public class MainActivity extends AppCompatActivity {
                     navController.navigate(R.id.action_global_loginFragment);
                 }else if(itemId == R.id.menuFavourite){
                     navController.navigate(R.id.action_global_favouriteFragment3);
-                }else if(itemId== R.id.menuCalendar ){
+                }else if(itemId == R.id.menuCalendar ){
                     navController.navigate(R.id.action_global_calendarFragment);
-                }else if(itemId== R.id.menuProfile){
+                }else if(itemId == R.id.menuProfile){
                     navController.navigate(R.id.action_global_profileFragment);
-                }else if(itemId== R.id.menuHome){
+                }else if(itemId == R.id.menuHome){
                     navController.navigate(R.id.action_global_homeFragment);
+                }else if(itemId == R.id.menuSearch){
+                    navController.navigate(R.id.action_global_searchFragment);
                 }
                 mainDrawer.closeDrawer(GravityCompat.START);
                 return true;

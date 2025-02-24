@@ -100,4 +100,13 @@
         android:id="@+id/action_global_profileFragment"
         app:destination="@id/profileFragment"
         app:launchSingleTop="true" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.tabty.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
+    <action
+        android:id="@+id/action_global_searchFragment"
+        app:destination="@id/searchFragment"
+        app:launchSingleTop="true" />
 </navigation>

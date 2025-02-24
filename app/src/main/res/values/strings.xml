@@ -23,4 +23,6 @@
     <string name="warningMessage">Are you sure you want to delete this favourite meal ?</string>
     <string name="delete">Delete</string>
     <string name="welcomeCalendar">What’s cooking today? Check your Calendar! 🍳</string>
+    <string name="homeWelcome">Your journey to better eating starts here. 🌱</string>
+    <string name="searchMenu">Search</string>
 </resources>
