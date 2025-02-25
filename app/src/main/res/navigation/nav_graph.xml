@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.example.tabty.Fragments.SplashFragment"
+        android:name="com.example.tabty.splash.view.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.example.tabty.Fragments.SignUpFragment"
+        android:name="com.example.tabty.signup.view.SignUpFragment"
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_sign_up" >
         <action
@@ -29,12 +29,14 @@
             app:destination="@id/loginFragment" />
         <action
             android:id="@+id/action_signUpFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
 
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.tabty.Fragments.LoginFragment"
+        android:name="com.example.tabty.login.view.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -42,7 +44,9 @@
             app:destination="@id/signUpFragment" />
         <action
             android:id="@+id/action_loginFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
 
     </fragment>
     <fragment
@@ -50,9 +54,6 @@
         android:name="com.example.tabty.home.view.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_homeFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
         <action
             android:id="@+id/action_homeFragment_to_mealFragment2"
             app:destination="@id/mealFragment" />
@@ -68,7 +69,9 @@
     <action
         android:id="@+id/action_global_homeFragment"
         app:destination="@id/homeFragment"
-        app:launchSingleTop="true" />
+        app:launchSingleTop="true"
+        app:popUpTo="@id/splashFragment"
+        app:popUpToInclusive="true" />
     <action
         android:id="@+id/action_global_loginFragment"
         app:destination="@id/loginFragment"
@@ -93,7 +96,7 @@
         app:launchSingleTop="true" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.tabty.ProfileFragment"
+        android:name="com.example.tabty.profile.view.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
     <action
