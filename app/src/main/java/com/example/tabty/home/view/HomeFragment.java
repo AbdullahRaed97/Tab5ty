@@ -9,15 +9,12 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.tabty.home.presenter.HomePresenter;
@@ -101,12 +98,12 @@ public class HomeFragment extends Fragment implements OnImageClickedListener ,Ho
     }
 
     @Override
-    public void showRandomMeal(List<Meal> meals) {
-        Glide.with(getContext()).load(meals.get(0).getStrMealThumb())
+    public void showRandomMeal(Meal meal) {
+        Glide.with(getContext()).load(meal.getStrMealThumb())
                 .apply(new RequestOptions().override(500,500)).into(randomMeal_iv);
-        randomMeal_title.setText(meals.get(0).getStrMeal());
-        home_Instruction_tv.setText(meals.get(0).getStrInstructions());
-        randoMealSent = meals.get(0);
+        randomMeal_title.setText(meal.getStrMeal());
+        home_Instruction_tv.setText(meal.getStrInstructions());
+        randoMealSent = meal;
     }
 
     @Override
