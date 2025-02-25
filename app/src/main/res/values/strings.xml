@@ -25,4 +25,9 @@
     <string name="welcomeCalendar">What’s cooking today? Check your Calendar! 🍳</string>
     <string name="homeWelcome">Your journey to better eating starts here. 🌱</string>
     <string name="searchMenu">Search</string>
+    <string name="welcomeProfile">Hey Chef, your profile is looking as good as your meals! 😋</string>
+    <string name="loginScren_login">Login</string>
+    <string name="continue_with_google">Continue with Google</string>
+    <string name="tab_ty">Tabخty</string>
+    <string name="go_as_a_guest">Go as a guest</string>
 </resources>
