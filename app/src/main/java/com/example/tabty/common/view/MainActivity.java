@@ -12,6 +12,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 import com.example.tabty.R;
 import com.example.tabty.utilities.FirebaseManagement;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -38,8 +39,17 @@ public class MainActivity extends AppCompatActivity {
                 int itemId = item.getItemId();
                 Log.i("TAG", "onNavigationItemSelected: "+itemId);
                 if(itemId == R.id.menuLogout){
-                    FirebaseManagement.logoutFromFirebase();
-                    navController.navigate(R.id.action_global_loginFragment);
+                    new MaterialAlertDialogBuilder(MainActivity.this)
+                            .setTitle("Logout")
+                            .setMessage("Are you sure you want to logout ?")
+                            .setPositiveButton("Yes", (dialog, which) -> {
+                                FirebaseManagement.logoutFromFirebase();
+                                navController.navigate(R.id.action_global_loginFragment);
+                            })
+                            .setNegativeButton("Cancel", (dialog, which) -> {
+
+                            })
+                            .show();
                 }else if(itemId == R.id.menuFavourite){
                     navController.navigate(R.id.action_global_favouriteFragment3);
                 }else if(itemId == R.id.menuCalendar ){
