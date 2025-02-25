@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Single;
 
 @Dao
@@ -19,7 +20,7 @@ public interface PlannedMealDao {
     @Insert(onConflict = OnConflictStrategy.NONE)
      Completable insertPlannedMeal(PlannedMeal meal);
     @Query("select * from PlannedMeal where mealDate = :date")
-    Single<List<PlannedMeal>> getAllPlannedMeal(LocalDate date);
+    Flowable<List<PlannedMeal>> getAllPlannedMeal(LocalDate date);
     @Delete
      Completable deletePlannedMeal(PlannedMeal meal);
 }

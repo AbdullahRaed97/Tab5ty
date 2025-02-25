@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Single;
 
 public class PlannedMealRepository {
@@ -34,7 +35,7 @@ public class PlannedMealRepository {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public Single<List<PlannedMeal>> getAllLocalPlannedMealByDate(LocalDate date){
+    public Flowable<List<PlannedMeal>> getAllLocalPlannedMealByDate(LocalDate date){
         return localDataSource.getAllPlannedMealByDate(date);
     }
     public Completable deletePlannedMeal(PlannedMeal meal){
