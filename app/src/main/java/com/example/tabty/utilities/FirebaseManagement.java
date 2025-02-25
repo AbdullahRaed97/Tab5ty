@@ -15,15 +15,10 @@ public class FirebaseManagement {
         myFirebase.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful())
-                {
-                    firebaseCallbak.onFirebaseResponse(true,null);
-//                    View view = new View(context);
-//                    Toast.makeText(context, "Login Success", Toast.LENGTH_SHORT).show();
-//                    Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_onBoardFragment);
+                if(task.isSuccessful()) {
+                    firebaseCallbak.onFirebaseSuccess("Login Success");
                 }else{
-                    //Toast.makeText(context, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                    firebaseCallbak.onFirebaseResponse(false,task.getException().getLocalizedMessage());
+                    firebaseCallbak.onFirebaseFailure(task.getException().getLocalizedMessage());
                 }
             }
         });
@@ -36,20 +31,17 @@ public class FirebaseManagement {
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful())
-                        {
-                            firebaseCallbak.onFirebaseResponse(true,null);
-
+                        if(task.isSuccessful()) {
+                            firebaseCallbak.onFirebaseSuccess("Registration Succeed");
                         }
                         else{
-                            firebaseCallbak.onFirebaseResponse(false,task.getException().getLocalizedMessage());
+                            firebaseCallbak.onFirebaseFailure(task.getException().getLocalizedMessage());
                         }
                     }
                 });
     }
 
-    public static void logoutFromFirebase()
-    {
+    public static void logoutFromFirebase() {
         FirebaseAuth.getInstance().signOut();
     }
 }
