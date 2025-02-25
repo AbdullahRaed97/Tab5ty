@@ -7,6 +7,6 @@ import java.util.List;
 public interface HomeView {
     public void showAllMealsByFirstLetter(List<Meal> meals);
     public void showAllMealsByFirstLetterError(String errorMessage);
-    public void showRandomMeal(List<Meal> meals);
+    public void showRandomMeal(Meal meal);
     public void showRandomMealError(String errorMessage);
 }
