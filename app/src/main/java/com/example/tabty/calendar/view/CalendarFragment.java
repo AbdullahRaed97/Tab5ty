@@ -19,9 +19,12 @@ import android.widget.CalendarView;
 
 import com.example.tabty.R;
 import com.example.tabty.calendar.presenter.CalendarPresenter;
+import com.example.tabty.common.view.MainActivity;
 import com.example.tabty.model.PlannedMealRepository;
 import com.example.tabty.model.db.PlannedMeal;
 import com.example.tabty.model.db.PlannedMealLocalDataSource;
+import com.example.tabty.utilities.FirebaseManagement;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.time.LocalDate;
@@ -36,7 +39,6 @@ public class CalendarFragment extends Fragment implements OnCalendarDeleteClickL
     View myView;
     RecyclerView recyclerView;
     CalendarAdapter myAdapter;
-    List<PlannedMeal> plannedMeals;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,23 +73,28 @@ public class CalendarFragment extends Fragment implements OnCalendarDeleteClickL
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 Calendar selectedDate = Calendar.getInstance();
-
                 presenter.getAllPlannedMealsByDate(LocalDate.of(year,month,dayOfMonth));
                 Log.i("TAG", "onSelectedDayChange: "+selectedDate.getTime());
-                Log.i("TAG", "onSelectedDayChange: "+plannedMeals);
             }
         });
     }
     @Override
     public void onDeleteClickAction(PlannedMeal meal) {
-        presenter.deleteLocalMeal(meal);
-        plannedMeals.remove(meal);
-        myAdapter.setData(plannedMeals);
+        new MaterialAlertDialogBuilder(requireContext())
+                .setTitle("Delete item")
+                .setMessage("Are you sure you want to delete this meal ?")
+                .setPositiveButton("Yes", (dialog, which) -> {
+                    presenter.deleteLocalMeal(meal);
+                })
+                .setNegativeButton("Cancel", (dialog, which) -> {
+
+                })
+                .show();
+
     }
 
     @Override
     public void onPlannedMealListSuccess(List<PlannedMeal> plannedMeals) {
-        this.plannedMeals=plannedMeals;
         myAdapter.setData(plannedMeals);
     }
 
