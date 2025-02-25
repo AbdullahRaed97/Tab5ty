@@ -1,4 +1,4 @@
-package com.example.tabty.Fragments;
+package com.example.tabty.login.view;
 
 import android.os.Bundle;
 
@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,18 +16,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.tabty.R;
-import com.example.tabty.utilities.FirebaseCallback;
-import com.example.tabty.utilities.FirebaseManagement;
+import com.example.tabty.login.presenter.LoginPresenter;
 import com.google.android.material.snackbar.Snackbar;
 
 
-public class LoginFragment extends Fragment implements FirebaseCallback {
+public class LoginFragment extends Fragment implements LoginView {
 
-    EditText emailText;
-    EditText passwordText;
-    Button loginButton;
-    TextView signupText;
-    NavController navController;
+    private EditText emailText, passwordText;
+    private Button loginButton;
+    private TextView signupText;
+    private NavController navController;
+    private LoginPresenter presenter;
+    private View myView;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +48,8 @@ public class LoginFragment extends Fragment implements FirebaseCallback {
         passwordText=view.findViewById(R.id.passwordTextLogin);
         signupText=view.findViewById(R.id.signupText);
         navController = Navigation.findNavController(view);
-
+        presenter = new LoginPresenter(this);
+        myView = view;
         signupText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,33 +60,29 @@ public class LoginFragment extends Fragment implements FirebaseCallback {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = emailText.getText().toString();
-                String pass = passwordText.getText().toString();
-                boolean isValid =dataValidation(email,pass);
-                if(isValid)
-                    FirebaseManagement.loginIntoFirebase(email,pass,LoginFragment.this);
+                presenter.loginAction(emailText.getText().toString(),passwordText.getText().toString());
             }
         });
 
     }
-    private boolean dataValidation(String email,String pass) {
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            emailText.setError("Email is invalid");
-            return false;
-        }
-        if(pass.length()<6){
-            passwordText.setError("invalid password length");
-            return false;
-        }
-        return true;
-    }
     @Override
-    public void onFirebaseResponse(boolean success, String errorMessage) {
-        if (success){
-            Snackbar.make( loginButton.getRootView(),"success", Snackbar.LENGTH_SHORT).show();
-           navController.navigate(R.id.action_loginFragment_to_homeFragment);
-        }else {
-            Snackbar.make( loginButton.getRootView(),errorMessage, Snackbar.LENGTH_SHORT).show();
-        }
+    public void onEmailInvalid(String errorMessage) {
+        emailText.setError(errorMessage);
+    }
+
+    @Override
+    public void onPasswordLengthShort(String errorMessage) {
+        passwordText.setError(errorMessage);
+    }
+
+    @Override
+    public void onLoginSuccess(String message) {
+        Snackbar.make(myView,message,Snackbar.LENGTH_SHORT).show();
+        navController.navigate(R.id.action_loginFragment_to_homeFragment);
+    }
+
+    @Override
+    public void onLoginFailure(String errorMessage) {
+        Snackbar.make(myView,errorMessage,Snackbar.LENGTH_SHORT).show();
     }
 }
