@@ -1,11 +1,10 @@
 package com.example.tabty.home.presenter;
 
+import android.annotation.SuppressLint;
 import com.example.tabty.home.view.HomeView;
-import com.example.tabty.model.db.Meal;
 import com.example.tabty.model.MealsRepository;
-import com.example.tabty.model.network.NetworkCallback;
-
-import java.util.List;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class HomePresenter  {
     MealsRepository myRepo;
@@ -14,32 +13,21 @@ public class HomePresenter  {
         this.myRepo=myRepo;
         this.myView=myView;
     }
+    @SuppressLint("CheckResult")
     public void getRemoteAllMealsByFirstLetter(String firstLetter){
-        myRepo.getAllRemoteMealByFirstLetter(new NetworkCallback<List<Meal>>() {
-            @Override
-            public void onSuccess(List<Meal> meals) {
-                myView.showAllMealsByFirstLetter(meals);
-            }
-
-            @Override
-            public void onFailure(String errorMessage) {
-                myView.showRandomMealError(errorMessage);
-            }
-        }, firstLetter);
+        myRepo.getAllRemoteMealByFirstLetter(firstLetter)
+                .subscribeOn(Schedulers.io())
+                .map(item -> item.getMeals())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(item -> myView.showAllMealsByFirstLetter(item));
     }
 
+    @SuppressLint("CheckResult")
     public void getRemoteRandomMeal(){
-        myRepo.getRemoteRandomMeal(new NetworkCallback<List<Meal>>(){
-
-            @Override
-            public void onSuccess(List<Meal> result) {
-                myView.showRandomMeal(result);
-            }
-            @Override
-            public void onFailure(String errorMessage) {
-                myView.showRandomMealError(errorMessage);
-            }
-        });
+        myRepo.getRemoteRandomMeal().subscribeOn(Schedulers.io())
+                .map(item -> item.getMeals().get(0))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(item -> myView.showRandomMeal(item));
     }
 
 }
