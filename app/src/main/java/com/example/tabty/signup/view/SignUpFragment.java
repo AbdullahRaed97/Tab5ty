@@ -1,4 +1,4 @@
-package com.example.tabty.Fragments;
+package com.example.tabty.signup.view;
 
 import android.os.Bundle;
 
@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,12 +16,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.tabty.R;
-import com.example.tabty.utilities.FirebaseCallback;
-import com.example.tabty.utilities.FirebaseManagement;
+import com.example.tabty.signup.presenter.SignUpPresenter;
 import com.google.android.material.snackbar.Snackbar;
 
 
-public class SignUpFragment extends Fragment implements FirebaseCallback {
+public class SignUpFragment extends Fragment implements SignUpView {
 
     EditText emailText;
     EditText passwordText;
@@ -30,6 +28,8 @@ public class SignUpFragment extends Fragment implements FirebaseCallback {
     TextView loginText;
     Button registerButton;
     NavController navController;
+    SignUpPresenter presenter;
+    View myView;
     private static final String TAG = "SignUpFragment";
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,17 +51,13 @@ public class SignUpFragment extends Fragment implements FirebaseCallback {
         registerButton=view.findViewById(R.id.registerButton);
         loginText=view.findViewById(R.id.loginText);
         navController=Navigation.findNavController(view);
+        myView = view;
+        presenter=new SignUpPresenter(this);
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = emailText.getText().toString();
-                String pass = passwordText.getText().toString();
-                String confirmPass = confirmPasswordText.getText().toString();
-                boolean isValid =dataValidation(email,pass,confirmPass);
-                if(isValid)
-                    FirebaseManagement.createFirebaseAccount(email,pass,SignUpFragment.this);
-
+                presenter.registerAction(emailText.getText().toString(),passwordText.getText().toString(),confirmPasswordText.getText().toString());
                 }
         });
         loginText.setOnClickListener(new View.OnClickListener() {
@@ -71,30 +67,31 @@ public class SignUpFragment extends Fragment implements FirebaseCallback {
             }
         });
     }
-    private boolean dataValidation(String email,String pass,String confirmPass) {
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            emailText.setError("Email is invalid");
-            return false;
-        }
-        if(pass.length()<6){
-            passwordText.setError("invalid password length");
-            return false;
-        }
-        if(!confirmPass.equals(pass))
-        {
-            confirmPasswordText.setError("Un matched passwords");
-            return false;
-        }
-        return true;
+
+    @Override
+    public void onEmailInvalid(String errorMessage) {
+        emailText.setError(errorMessage);
     }
 
     @Override
-    public void onFirebaseResponse(boolean success, String errorMessage) {
-        if (success){
-            Snackbar.make(registerButton.getRootView(),"Registeration Success",Snackbar.LENGTH_SHORT).show();
-            navController.navigate(R.id.action_signUpFragment_to_homeFragment);
-        }else{
-            Snackbar.make(registerButton.getRootView(),errorMessage,Snackbar.LENGTH_SHORT).show();
-        }
+    public void onPasswordLengthShort(String errorMessage) {
+        passwordText.setError(errorMessage);
     }
+
+    @Override
+    public void passwordUnMatched(String errorMessage) {
+        confirmPasswordText.setError(errorMessage);
+    }
+
+    @Override
+    public void onRegisterSuccess(String message) {
+        Snackbar.make(myView,message,Snackbar.LENGTH_SHORT).show();
+        navController.navigate(R.id.action_signUpFragment_to_homeFragment);
+    }
+
+    @Override
+    public void onRegisterFailure(String errorMessage) {
+        Snackbar.make(myView,errorMessage,Snackbar.LENGTH_SHORT).show();
+    }
+
 }
