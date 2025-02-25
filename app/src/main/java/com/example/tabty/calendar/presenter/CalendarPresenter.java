@@ -1,5 +1,6 @@
 package com.example.tabty.calendar.presenter;
 
+import android.annotation.SuppressLint;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
@@ -26,28 +27,17 @@ public class CalendarPresenter {
     }
     public void deleteLocalMeal(PlannedMeal meal){
         myRepo.deletePlannedMeal(meal)
+        .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe();
 
     }
+    @SuppressLint("CheckResult")
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void getAllPlannedMealsByDate(LocalDate date){
          myRepo.getAllLocalPlannedMealByDate(date).subscribeOn(Schedulers.io())
                  .observeOn(AndroidSchedulers.mainThread())
-                 .subscribe(new SingleObserver<List<PlannedMeal>>() {
-                     @Override
-                     public void onSubscribe(@NonNull Disposable d) {
-                         //do-nothing
-                     }
-
-                     @Override
-                     public void onSuccess(@NonNull List<PlannedMeal> plannedMeals) {
-                         myView.onPlannedMealListSuccess(plannedMeals);
-                     }
-
-                     @Override
-                     public void onError(@NonNull Throwable e) {
-                        myView.onPlannedMealFailure(e.getLocalizedMessage());
-                     }
-                 });
+                 .subscribe(item ->myView.onPlannedMealListSuccess(item),
+                        error->myView.onPlannedMealFailure(error.getLocalizedMessage()));
     }
 }
