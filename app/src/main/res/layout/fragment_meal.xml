@@ -33,18 +33,20 @@
                 tools:src="@tools:sample/avatars" />
             <ImageButton
                 android:id="@+id/mealFavButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_gravity="end"
                 android:layout_marginEnd="8dp"
                 android:layout_marginTop="8dp"
+                android:background="@color/Primary"
                 android:src="@drawable/favourite" />
             <ImageButton
                 android:id="@+id/mealCalendarButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_gravity="start"
                 android:layout_marginStart="8dp"
+                android:backgroundTint="@color/Primary"
                 android:layout_marginTop="8dp"
                 android:src="@drawable/calendar" />
 
