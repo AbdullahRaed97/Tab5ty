@@ -2,12 +2,10 @@ package com.example.tabty.model.db;
 
 import android.content.Context;
 
-import androidx.lifecycle.LiveData;
-
 import java.util.List;
 
 import io.reactivex.rxjava3.core.Completable;
-import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.core.Flowable;
 
 public class MealsLocalDataSource {
     MealsDao dao;
@@ -21,7 +19,7 @@ public class MealsLocalDataSource {
     public Completable deleteMeal(MealEntity meal){
        return dao.deleteMeal(meal);
     }
-    public Single<List<MealEntity>> getAllMeals(){
+    public Flowable<List<MealEntity>> getAllMeals(){
         return dao.getAllMeals();
     }
 }

@@ -7,6 +7,8 @@ import com.example.tabty.model.network.POJOs.MealResponse;
 
 import java.util.List;
 
+import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory;
+import io.reactivex.rxjava3.core.Single;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -21,6 +23,7 @@ public class MealRemoteDataSource {
     private MealRemoteDataSource() {
         Retrofit myRetrofit = new Retrofit.Builder().baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                 .build();
         service = myRetrofit.create(ApiMeals.class);
     }
@@ -29,66 +32,17 @@ public class MealRemoteDataSource {
                 remoteDataSource=new MealRemoteDataSource();
             return remoteDataSource;
         }
-    public void callMealsByFirstLetter(NetworkCallback<List<Meal>> networkCallback,String firstLetter) {
-        Call<MealResponse> call = service.getMealsByFirstLetter(firstLetter);
-        call.enqueue(new Callback<MealResponse>() {
-            @Override
-            public void onResponse(Call<MealResponse> call, Response<MealResponse> response) {
-                if(response.isSuccessful()){
-                    networkCallback.onSuccess(response.body().meals);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<MealResponse> call, Throwable throwable) {
-                networkCallback.onFailure(throwable.getMessage());
-                throwable.printStackTrace();
-            }
-        });
+    public Single<MealResponse> callMealsByFirstLetter(String firstLetter) {
+        return service.getMealsByFirstLetter(firstLetter);
     }
-    public void callRandomMeal(NetworkCallback<List<Meal>> networkCallback ){
-            Call<MealResponse> call = service.getRandomMeal();
-            call.enqueue(new Callback<MealResponse>() {
-                @Override
-                public void onResponse(Call<MealResponse> call, Response<MealResponse> response) {
-                    if(response.isSuccessful())
-                        networkCallback.onSuccess(response.body().meals);
-                }
-
-                @Override
-                public void onFailure(Call<MealResponse> call, Throwable throwable) {
-                    networkCallback.onFailure(throwable.getLocalizedMessage());
-                    throwable.printStackTrace();
-                }
-            });
+    public Single<MealResponse> callRandomMeal(){
+        return service.getRandomMeal();
     }
-    public void callIngredientResponse(NetworkCallback<List<Ingredient>> networkCallback){
-        Call<IngredientResponse> call = service.getAllIngredients();
-        call.enqueue(new Callback<IngredientResponse>() {
-            @Override
-            public void onResponse(Call<IngredientResponse> call, Response<IngredientResponse> response) {
-                networkCallback.onSuccess(response.body().meals);
-            }
-
-            @Override
-            public void onFailure(Call<IngredientResponse> call, Throwable throwable) {
-                networkCallback.onFailure(throwable.getLocalizedMessage());
-            }
-        });
+    public Single<IngredientResponse> callIngredientResponse(){
+        return service.getAllIngredients();
     }
-    public void callMealByID(NetworkCallback<Meal> networkCallback,String ID){
-        Call<MealResponse> call = service.getFullDetailedMeal(ID);
-        call.enqueue(new Callback<MealResponse>() {
-            @Override
-            public void onResponse(Call<MealResponse> call, Response<MealResponse> response) {
-                networkCallback.onSuccess(response.body().meals.get(0));
-            }
-
-            @Override
-            public void onFailure(Call<MealResponse> call, Throwable throwable) {
-                    networkCallback.onFailure(throwable.getLocalizedMessage());
-            }
-        });
+    public Single<MealResponse> callMealByID(String ID){
+        return service.getFullDetailedMeal(ID);
     }
     //To-Do make all other calls for ApiMeals
 }
