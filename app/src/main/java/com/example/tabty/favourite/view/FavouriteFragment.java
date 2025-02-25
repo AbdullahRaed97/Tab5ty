@@ -1,18 +1,14 @@
 package com.example.tabty.favourite.view;
 
-import android.app.Dialog;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.example.tabty.R;
 import com.example.tabty.favourite.presenter.FavouritePresenter;
@@ -20,6 +16,7 @@ import com.example.tabty.model.MealsRepository;
 import com.example.tabty.model.db.MealEntity;
 import com.example.tabty.model.db.MealsLocalDataSource;
 import com.example.tabty.model.network.MealRemoteDataSource;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
@@ -31,12 +28,8 @@ public class FavouriteFragment extends Fragment implements OnDeleteClickListener
     FavouritePresenter presenter;
     MealsRepository myRepo;
     View myView;
-    Dialog myDialog;
-    Button cancelButton;
-    Button deleteButton;
     RecyclerView recyclerView;
-    MealEntity myMeal;
-    List<MealEntity> mealList;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,22 +47,6 @@ public class FavouriteFragment extends Fragment implements OnDeleteClickListener
         super.onViewCreated(view, savedInstanceState);
         recyclerView = view.findViewById(R.id.favRecyclerView);
         myView=view;
-        myDialog = new Dialog(requireContext());
-        myDialog.setContentView(R.layout.custom_dialog);
-        myDialog.setCancelable(false);
-        cancelButton=myDialog.findViewById(R.id.dialogCancelBtn);
-        deleteButton=myDialog.findViewById(R.id.dialogDeleteBtn);
-
-        cancelButton.setOnClickListener(v->{
-            myDialog.cancel();
-        });
-
-        deleteButton.setOnClickListener(v->{
-            presenter.deleteLocalMeal(myMeal);
-            mealList.remove(myMeal);
-            myAdapter.setData(mealList);
-            myDialog.cancel();
-        });
 
         myRepo =MealsRepository.getInstance(MealRemoteDataSource.getInstance(),new MealsLocalDataSource(getContext()));
         presenter = new FavouritePresenter(myRepo,this);
@@ -84,13 +61,20 @@ public class FavouriteFragment extends Fragment implements OnDeleteClickListener
 
     @Override
     public void onDeleteClickAction(MealEntity meal) {
-        myMeal=meal;
-        myDialog.show();
+        new MaterialAlertDialogBuilder(requireContext())
+                .setTitle("Delete item")
+                .setMessage("Are you sure you want to delete this meal ?")
+                .setPositiveButton("Yes", (dialog, which) -> {
+                    presenter.deleteLocalMeal(meal);
+                })
+                .setNegativeButton("Cancel", (dialog, which) -> {
+
+                })
+                .show();
     }
 
     @Override
     public void onFavouriteMealListSuccess(List<MealEntity> mealList) {
-        this.mealList=mealList;
         myAdapter.setData(mealList);
     }
 
