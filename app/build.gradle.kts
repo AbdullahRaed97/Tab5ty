@@ -44,6 +44,9 @@ dependencies {
     implementation(libs.navigation.ui)
     implementation(libs.annotation)
     implementation(libs.firebase.auth)
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
+    implementation(libs.googleid)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -60,5 +63,6 @@ dependencies {
     implementation ("io.reactivex.rxjava3:rxjava:3.1.6")
     implementation ("com.github.akarnokd:rxjava3-retrofit-adapter:3.0.0")
     implementation("androidx.room:room-rxjava3:2.6.1")
+    implementation("com.google.android.gms:play-services-auth:21.3.0")
 }
 
