@@ -3,6 +3,8 @@ package com.example.tabty.model;
 import com.example.tabty.model.db.MealEntity;
 import com.example.tabty.model.db.MealsLocalDataSource;
 import com.example.tabty.model.network.MealRemoteDataSource;
+import com.example.tabty.model.network.POJOs.CategoriesResponse;
+import com.example.tabty.model.network.POJOs.CountriesResponse;
 import com.example.tabty.model.network.POJOs.IngredientResponse;
 import com.example.tabty.model.network.POJOs.MealResponse;
 
@@ -49,5 +51,10 @@ public class MealsRepository {
     public Single<MealResponse> getMealByID(String id){
        return remoteDataSource.callMealByID(id);
     }
-    //To-Do complete all other calls
+    public Single<CountriesResponse> getAllCountries(){
+        return remoteDataSource.getAllCountryResponse();
+    }
+    public Single<CategoriesResponse> getAllCategories(){
+        return remoteDataSource.getAllCategoriesResponse();
+    }
 }

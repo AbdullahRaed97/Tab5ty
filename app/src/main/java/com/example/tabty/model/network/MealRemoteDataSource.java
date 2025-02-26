@@ -1,6 +1,8 @@
 package com.example.tabty.model.network;
 
 import com.example.tabty.model.db.Meal;
+import com.example.tabty.model.network.POJOs.CategoriesResponse;
+import com.example.tabty.model.network.POJOs.CountriesResponse;
 import com.example.tabty.model.network.POJOs.Ingredient;
 import com.example.tabty.model.network.POJOs.IngredientResponse;
 import com.example.tabty.model.network.POJOs.MealResponse;
@@ -43,6 +45,12 @@ public class MealRemoteDataSource {
     }
     public Single<MealResponse> callMealByID(String ID){
         return service.getFullDetailedMeal(ID);
+    }
+    public Single<CountriesResponse> getAllCountryResponse(){
+        return service.getAllCountries();
+    }
+    public Single<CategoriesResponse> getAllCategoriesResponse(){
+        return service.getAllCategories();
     }
     //To-Do make all other calls for ApiMeals
 }
