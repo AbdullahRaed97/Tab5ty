@@ -30,4 +30,10 @@
     <string name="continue_with_google">Continue with Google</string>
     <string name="tab_ty">Tabخty</string>
     <string name="go_as_a_guest">Go as a guest</string>
+    <string name="retry">Retry</string>
+    <string name="noInternetMessage">OOPS ! it seems your Internet connection is lost</string>
+    <string name="category">Category</string>
+    <string name="ingredient">Ingredient</string>
+    <string name="countryChip">Country</string>
+    <string name="client_id">642063047197-sdbja5usokslu78hdeg7mftup91t0s44.apps.googleusercontent.com</string>
 </resources>
