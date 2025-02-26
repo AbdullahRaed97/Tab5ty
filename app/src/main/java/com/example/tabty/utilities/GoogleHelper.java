@@ -2,10 +2,6 @@ package com.example.tabty.utilities;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
-import android.widget.Toast;
-
-import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.Fragment;
