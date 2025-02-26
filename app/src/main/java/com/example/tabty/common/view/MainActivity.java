@@ -1,8 +1,11 @@
 package com.example.tabty.common.view;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -11,14 +14,17 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 import com.example.tabty.R;
+import com.example.tabty.common.presenter.MainPresenter;
 import com.example.tabty.utilities.FirebaseManagement;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MainView{
     NavigationView navigationView;
     DrawerLayout mainDrawer;
     NavController navController;
+    MainPresenter presenter;
+    Dialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +33,15 @@ public class MainActivity extends AppCompatActivity {
         navigationView=findViewById(R.id.navView);
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.fragmentContainerView);
+
+        presenter= new MainPresenter(this);
+        presenter.checkNetworkConnectivity(this);
+
+        dialog = new Dialog(this);
+        dialog.setContentView(R.layout.custom_dialog);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT);
+        dialog.setCancelable(false);
+
         navController = navHostFragment.getNavController();
         NavigationUI.setupWithNavController(navigationView,navController);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -37,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
                    return false;
                }
                 int itemId = item.getItemId();
-                Log.i("TAG", "onNavigationItemSelected: "+itemId);
                 if(itemId == R.id.menuLogout){
                     new MaterialAlertDialogBuilder(MainActivity.this)
                             .setTitle("Logout")
@@ -66,5 +80,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         navigationView.bringToFront();
+    }
+
+    @Override
+    public void onNetworkAvailable() {
+        Log.i("TAG", "onNetworkAvailable: "+"Network is back");
+        dialog.cancel();
+    }
+
+    @Override
+    public void onNetworkLost() {
+        Log.i("TAG", "onNetworkLost: "+ "Network lost please reconnect");
+        dialog.show();
     }
 }
