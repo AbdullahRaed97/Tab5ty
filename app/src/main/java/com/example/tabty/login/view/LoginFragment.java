@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.example.tabty.R;
 import com.example.tabty.login.presenter.LoginPresenter;
+import com.example.tabty.utilities.GoogleHelper;
 import com.google.android.material.snackbar.Snackbar;
 
 
@@ -28,6 +29,7 @@ public class LoginFragment extends Fragment implements LoginView {
     private NavController navController;
     private LoginPresenter presenter;
     private View myView;
+    private Button googleButton;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,8 +49,9 @@ public class LoginFragment extends Fragment implements LoginView {
         emailText=view.findViewById(R.id.emailTextLogin);
         passwordText=view.findViewById(R.id.passwordTextLogin);
         signupText=view.findViewById(R.id.signupText);
+        googleButton=view.findViewById(R.id.googleBtn);
         navController = Navigation.findNavController(view);
-        presenter = new LoginPresenter(this);
+        presenter = new LoginPresenter(this,new GoogleHelper(this,this));
         myView = view;
         signupText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,7 +66,9 @@ public class LoginFragment extends Fragment implements LoginView {
                 presenter.loginAction(emailText.getText().toString(),passwordText.getText().toString());
             }
         });
-
+        googleButton.setOnClickListener(v->{
+            presenter.signInWithGoogle();
+        });
     }
     @Override
     public void onEmailInvalid(String errorMessage) {
@@ -83,6 +88,17 @@ public class LoginFragment extends Fragment implements LoginView {
 
     @Override
     public void onLoginFailure(String errorMessage) {
+        Snackbar.make(myView,errorMessage,Snackbar.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onSignUpWithGoogleSuccess(String message) {
+        Snackbar.make(myView,message,Snackbar.LENGTH_SHORT).show();
+        navController.navigate(R.id.action_loginFragment_to_homeFragment);
+    }
+
+    @Override
+    public void onSignUpWithGoogleFailure(String errorMessage) {
         Snackbar.make(myView,errorMessage,Snackbar.LENGTH_SHORT).show();
     }
 }

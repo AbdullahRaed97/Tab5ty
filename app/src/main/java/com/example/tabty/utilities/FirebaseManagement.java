@@ -1,5 +1,7 @@
 package com.example.tabty.utilities;
 
+
+
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -44,4 +46,5 @@ public class FirebaseManagement {
     public static void logoutFromFirebase() {
         FirebaseAuth.getInstance().signOut();
     }
+
 }

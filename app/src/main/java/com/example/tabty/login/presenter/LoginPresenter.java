@@ -1,10 +1,10 @@
 package com.example.tabty.login.presenter;
 
 import android.util.Patterns;
-
 import com.example.tabty.login.view.LoginView;
 import com.example.tabty.utilities.FirebaseCallback;
 import com.example.tabty.utilities.FirebaseManagement;
+import com.example.tabty.utilities.GoogleHelper;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -12,10 +12,12 @@ public class LoginPresenter  {
     private LoginView myView;
     private final FirebaseAuth myFirebase;
     private final FirebaseUser user;
-    public LoginPresenter(LoginView myView){
+    GoogleHelper googleHelper;
+    public LoginPresenter(LoginView myView,GoogleHelper googleHelper){
         myFirebase = FirebaseAuth.getInstance();
         user = myFirebase.getCurrentUser();
         this.myView = myView;
+        this.googleHelper=googleHelper;
     }
     public void loginAction(String name , String password){
         if(dataValidation(name,password)){
@@ -41,5 +43,8 @@ public class LoginPresenter  {
             return false;
         }
         return true;
+    }
+    public void signInWithGoogle(){
+        googleHelper.signIn();
     }
 }
