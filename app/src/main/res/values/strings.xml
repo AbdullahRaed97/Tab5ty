@@ -36,4 +36,5 @@
     <string name="ingredient">Ingredient</string>
     <string name="countryChip">Country</string>
     <string name="client_id">642063047197-sdbja5usokslu78hdeg7mftup91t0s44.apps.googleusercontent.com</string>
+    <string name="registerBtn">Register</string>
 </resources>
