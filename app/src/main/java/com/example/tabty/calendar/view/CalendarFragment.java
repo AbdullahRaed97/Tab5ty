@@ -6,8 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,11 +17,9 @@ import android.widget.CalendarView;
 
 import com.example.tabty.R;
 import com.example.tabty.calendar.presenter.CalendarPresenter;
-import com.example.tabty.common.view.MainActivity;
 import com.example.tabty.model.PlannedMealRepository;
 import com.example.tabty.model.db.PlannedMeal;
 import com.example.tabty.model.db.PlannedMealLocalDataSource;
-import com.example.tabty.utilities.FirebaseManagement;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
