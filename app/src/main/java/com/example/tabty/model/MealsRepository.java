@@ -57,4 +57,13 @@ public class MealsRepository {
     public Single<CategoriesResponse> getAllCategories(){
         return remoteDataSource.getAllCategoriesResponse();
     }
+    public Single<MealResponse>getAllMealsByIngredient(String ingredient){
+        return remoteDataSource.getAllMealsByIngredient(ingredient);
+    }
+    public Single<MealResponse>getAllMealsByArea(String country){
+        return remoteDataSource.getAllMealsByArea(country);
+    }
+    public Single<MealResponse>getAllMealsByCategory(String category){
+        return remoteDataSource.getAllMealsByCategory(category);
+    }
 }

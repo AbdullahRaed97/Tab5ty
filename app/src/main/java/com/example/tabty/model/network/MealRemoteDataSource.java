@@ -44,13 +44,23 @@ public class MealRemoteDataSource {
         return service.getAllIngredients();
     }
     public Single<MealResponse> callMealByID(String ID){
-        return service.getFullDetailedMeal(ID);
+        return service.getFullDetailedMealByID(ID);
     }
     public Single<CountriesResponse> getAllCountryResponse(){
         return service.getAllCountries();
     }
     public Single<CategoriesResponse> getAllCategoriesResponse(){
         return service.getAllCategories();
+    }
+
+    public Single<MealResponse> getAllMealsByCategory(String category){
+        return service.getAllMealsByCategory(category);
+    }
+    public Single<MealResponse> getAllMealsByArea(String area){
+        return service.getAllMealsByArea(area);
+    }
+    public Single<MealResponse> getAllMealsByIngredient(String ingredient){
+        return service.getAllMealsByIngredient(ingredient);
     }
     //To-Do make all other calls for ApiMeals
 }

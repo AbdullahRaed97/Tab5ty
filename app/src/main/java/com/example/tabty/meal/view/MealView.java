@@ -1,5 +1,6 @@
 package com.example.tabty.meal.view;
 
+import com.example.tabty.model.db.Meal;
 import com.example.tabty.model.db.MealEntity;
 
 public interface MealView {
@@ -7,4 +8,5 @@ public interface MealView {
     void onInsertMealFailure(String errorMessage);
     void onInsertPlannedMealSuccess(String success);
     void OnInsertPlannedMealFailure(String errorMessage);
+    void showMealByID(Meal meal);
 }
