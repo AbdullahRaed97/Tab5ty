@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.tabty.R;
 import com.example.tabty.model.db.MealEntity;
+import com.example.tabty.utilities.Utilities;
 
 import java.util.List;
 
@@ -45,6 +46,8 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.View
         holder.favMeal_tv.setText(meals.get(position).getStrMeal());
         Glide.with(context).load(meals.get(position).getStrMealThumb())
                 .apply(new RequestOptions().override(500,500)).into(holder.favMeal_iv);
+        Glide.with(context).load("https://www.themealdb.com/images/icons/flags/big/64/"+ Utilities.getCountryNameCode(meals.get(position).getStrArea())+".png")
+                .apply(new RequestOptions().override(500, 500)).into(holder.favMealFlag_iv);
         holder.favMealDeleteBtn.setOnClickListener(v->{
             listener.onDeleteClickAction(meals.get(position));
         });
