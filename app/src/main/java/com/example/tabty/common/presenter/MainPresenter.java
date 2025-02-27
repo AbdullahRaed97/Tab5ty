@@ -2,6 +2,7 @@ package com.example.tabty.common.presenter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import com.example.tabty.common.view.MainView;
 import com.example.tabty.utilities.NetworkConnectivityObserver;
@@ -28,5 +29,13 @@ public class MainPresenter {
                         myView.onNetworkLost();
                     }
                 });
+    }
+    public void setSharedPreferencesValues(SharedPreferences sharedPreferences){
+        SharedPreferences.Editor myEditor = sharedPreferences.edit();
+        myEditor.putBoolean("isGuest",false);
+        myEditor.apply();
+    }
+    public boolean isGuestMode(SharedPreferences sharedPreferences){
+        return sharedPreferences.getBoolean("isGuest",false);
     }
 }
