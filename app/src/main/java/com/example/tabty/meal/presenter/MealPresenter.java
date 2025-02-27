@@ -1,7 +1,9 @@
 package com.example.tabty.meal.presenter;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.util.Log;
 
@@ -16,6 +18,7 @@ import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.CompletableObserver;
 import io.reactivex.rxjava3.disposables.Disposable;
@@ -60,7 +63,7 @@ public class MealPresenter {
         if (matchResult != null) {
             return matchResult.getGroups().get(1).getValue();
         } else {
-            return null;
+            return "";
         }
     }
     public void insertLocalPlannedMeal(Meal meal , Context context){
@@ -99,5 +102,14 @@ public class MealPresenter {
         datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis()-1000);
         datePickerDialog.show();
     }
-
+    public boolean isGuestMode(SharedPreferences sharedPreferences){
+       return sharedPreferences.getBoolean("isGuest",false);
+    }
+    @SuppressLint("CheckResult")
+    public void getMealByID(String ID){
+       myRepo.getMealByID(ID).subscribeOn(Schedulers.io())
+               .observeOn(AndroidSchedulers.mainThread())
+               .map(item -> item.getMeals().get(0))
+               .subscribe(item -> myView.showMealByID(item));
+    }
 }
