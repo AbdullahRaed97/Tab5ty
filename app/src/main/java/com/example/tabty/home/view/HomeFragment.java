@@ -71,7 +71,7 @@ public class HomeFragment extends Fragment implements OnImageClickedListener ,Ho
         presenter.getRemoteAllMealsByFirstLetter("s");
         presenter.getRemoteRandomMeal();
         randomMeal_iv.setOnClickListener(v->{
-            HomeFragmentDirections.ActionHomeFragmentToMealFragment2 action = HomeFragmentDirections.actionHomeFragmentToMealFragment2(randoMealSent);
+            HomeFragmentDirections.ActionHomeFragmentToMealFragment2 action = HomeFragmentDirections.actionHomeFragmentToMealFragment2(randoMealSent.getIdMeal());
             Navigation.findNavController(homeView).navigate(action);
         });
 
@@ -81,7 +81,7 @@ public class HomeFragment extends Fragment implements OnImageClickedListener ,Ho
     public void imageClickedAction(Meal meal) {
         Snackbar.make(homeView,"Image Clicked",Snackbar.LENGTH_SHORT).show();
         Meal sendMeal = meal;
-        HomeFragmentDirections.ActionHomeFragmentToMealFragment2 action = HomeFragmentDirections.actionHomeFragmentToMealFragment2(sendMeal);
+        HomeFragmentDirections.ActionHomeFragmentToMealFragment2 action = HomeFragmentDirections.actionHomeFragmentToMealFragment2(sendMeal.getIdMeal());
         Navigation.findNavController(homeView).navigate(action);
     }
 
