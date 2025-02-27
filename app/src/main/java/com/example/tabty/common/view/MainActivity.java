@@ -1,6 +1,7 @@
 package com.example.tabty.common.view;
 
 import android.app.Dialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -20,11 +21,13 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements MainView{
-    NavigationView navigationView;
-    DrawerLayout mainDrawer;
-    NavController navController;
-    MainPresenter presenter;
-    Dialog dialog;
+    private NavigationView navigationView;
+    private DrawerLayout mainDrawer;
+    private NavController navController;
+    private MainPresenter presenter;
+    private Dialog dialog;
+    private final String SHARED_PPEF_NAME="ApplicationPreferences";
+    public static SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,9 +36,11 @@ public class MainActivity extends AppCompatActivity implements MainView{
         navigationView=findViewById(R.id.navView);
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.fragmentContainerView);
+        sharedPreferences=getSharedPreferences(SHARED_PPEF_NAME,MODE_PRIVATE);
 
         presenter= new MainPresenter(this);
         presenter.checkNetworkConnectivity(this);
+        presenter.setSharedPreferencesValues(sharedPreferences);
 
         dialog = new Dialog(this);
         dialog.setContentView(R.layout.custom_dialog);
@@ -65,11 +70,50 @@ public class MainActivity extends AppCompatActivity implements MainView{
                             })
                             .show();
                 }else if(itemId == R.id.menuFavourite){
-                    navController.navigate(R.id.action_global_favouriteFragment3);
+                    if(presenter.isGuestMode(MainActivity.sharedPreferences)){
+                        new MaterialAlertDialogBuilder(MainActivity.this)
+                                .setTitle("Authentication needed ! ")
+                                .setMessage("Sorry you must login first to add meals to your Favourite list")
+                                .setPositiveButton("Login", (dialog, which) -> {
+                                    navController.navigate(R.id.action_global_loginFragment);
+                                })
+                                .setNegativeButton("Cancel", (dialog, which) -> {
+
+                                })
+                                .show();
+                    }else {
+                        navController.navigate(R.id.action_global_favouriteFragment3);
+                    }
                 }else if(itemId == R.id.menuCalendar ){
-                    navController.navigate(R.id.action_global_calendarFragment);
+                    if(presenter.isGuestMode(MainActivity.sharedPreferences)){
+                        new MaterialAlertDialogBuilder(MainActivity.this)
+                                .setTitle("Authentication needed ! ")
+                                .setMessage("Sorry you must login first to add meals to your Calendar list")
+                                .setPositiveButton("Login", (dialog, which) -> {
+                                    navController.navigate(R.id.action_global_loginFragment);
+                                })
+                                .setNegativeButton("Cancel", (dialog, which) -> {
+
+                                })
+                                .show();
+                    }else {
+                        navController.navigate(R.id.action_global_calendarFragment);
+                    }
                 }else if(itemId == R.id.menuProfile){
-                    navController.navigate(R.id.action_global_profileFragment);
+                    if(presenter.isGuestMode(MainActivity.sharedPreferences)){
+                        new MaterialAlertDialogBuilder(MainActivity.this)
+                                .setTitle("Authentication needed ! ")
+                                .setMessage("Sorry you must login first to go to your profile")
+                                .setPositiveButton("Login", (dialog, which) -> {
+                                    navController.navigate(R.id.action_global_loginFragment);
+                                })
+                                .setNegativeButton("Cancel", (dialog, which) -> {
+
+                                })
+                                .show();
+                    }else{
+                        navController.navigate(R.id.action_global_profileFragment);
+                    }
                 }else if(itemId == R.id.menuHome){
                     navController.navigate(R.id.action_global_homeFragment);
                 }else if(itemId == R.id.menuSearch){

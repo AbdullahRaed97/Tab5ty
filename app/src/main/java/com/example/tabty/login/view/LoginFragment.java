@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.tabty.R;
+import com.example.tabty.common.view.MainActivity;
 import com.example.tabty.login.presenter.LoginPresenter;
 import com.example.tabty.utilities.GoogleHelper;
 import com.google.android.material.snackbar.Snackbar;
@@ -30,6 +32,7 @@ public class LoginFragment extends Fragment implements LoginView {
     private LoginPresenter presenter;
     private View myView;
     private Button googleButton;
+    private Button guestBtn;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +53,7 @@ public class LoginFragment extends Fragment implements LoginView {
         passwordText=view.findViewById(R.id.passwordTextLogin);
         signupText=view.findViewById(R.id.signupText);
         googleButton=view.findViewById(R.id.googleBtn);
+        guestBtn=view.findViewById(R.id.guestBtn);
         navController = Navigation.findNavController(view);
         presenter = new LoginPresenter(this,new GoogleHelper(this,this));
         myView = view;
@@ -69,6 +73,11 @@ public class LoginFragment extends Fragment implements LoginView {
         googleButton.setOnClickListener(v->{
             presenter.signInWithGoogle();
         });
+
+        guestBtn.setOnClickListener(v->{
+            presenter.changeToGuestMode(MainActivity.sharedPreferences);
+            navController.navigate(R.id.action_loginFragment_to_homeFragment);
+        });
     }
     @Override
     public void onEmailInvalid(String errorMessage) {
@@ -84,6 +93,7 @@ public class LoginFragment extends Fragment implements LoginView {
     public void onLoginSuccess(String message) {
         Snackbar.make(myView,message,Snackbar.LENGTH_SHORT).show();
         navController.navigate(R.id.action_loginFragment_to_homeFragment);
+        presenter.changeToLoginMode(MainActivity.sharedPreferences);
     }
 
     @Override
@@ -95,6 +105,7 @@ public class LoginFragment extends Fragment implements LoginView {
     public void onSignUpWithGoogleSuccess(String message) {
         Snackbar.make(myView,message,Snackbar.LENGTH_SHORT).show();
         navController.navigate(R.id.action_loginFragment_to_homeFragment);
+        presenter.changeToLoginMode(MainActivity.sharedPreferences);
     }
 
     @Override

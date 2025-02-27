@@ -1,5 +1,6 @@
 package com.example.tabty.login.presenter;
 
+import android.content.SharedPreferences;
 import android.util.Patterns;
 import com.example.tabty.login.view.LoginView;
 import com.example.tabty.utilities.FirebaseCallback;
@@ -46,5 +47,15 @@ public class LoginPresenter  {
     }
     public void signInWithGoogle(){
         googleHelper.signIn();
+    }
+    public void changeToGuestMode(SharedPreferences sharedPreferences){
+        SharedPreferences.Editor myEditor = sharedPreferences.edit();
+        myEditor.putBoolean("isGuest",true);
+        myEditor.apply();
+    }
+    public void changeToLoginMode(SharedPreferences sharedPreferences){
+        SharedPreferences.Editor myEditor = sharedPreferences.edit();
+        myEditor.putBoolean("isGuest",false);
+        myEditor.apply();
     }
 }
