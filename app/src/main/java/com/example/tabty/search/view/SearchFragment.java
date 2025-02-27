@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,6 +21,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.tabty.R;
+import com.example.tabty.home.view.HomeFragmentDirections;
 import com.example.tabty.model.MealsRepository;
 import com.example.tabty.model.db.MealsLocalDataSource;
 import com.example.tabty.model.network.MealRemoteDataSource;
@@ -36,7 +38,7 @@ import java.util.List;
 import io.reactivex.rxjava3.core.Observable;
 
 
-public class SearchFragment extends Fragment implements SearchView {
+public class SearchFragment extends Fragment implements SearchView ,OnImageClickListener {
 
     RecyclerView recyclerView;
     ChipGroup chipGroup;
@@ -44,6 +46,7 @@ public class SearchFragment extends Fragment implements SearchView {
     ImageButton menuButton;
     SearchPresenter presenter;
     SearchAdapter myAdapter;
+    View myView;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +67,7 @@ public class SearchFragment extends Fragment implements SearchView {
         searchBar=view.findViewById(R.id.searchBar);
         chipGroup=view.findViewById(R.id.chipGroup);
         recyclerView=view.findViewById(R.id.searchRecyclerView);
+        myView=view;
 
         MealsRepository myRepo = MealsRepository.getInstance(MealRemoteDataSource.getInstance(),new MealsLocalDataSource(requireContext()));
         presenter=new SearchPresenter(myRepo,this);
@@ -76,7 +80,7 @@ public class SearchFragment extends Fragment implements SearchView {
         recyclerView.setLayoutManager(layoutManager);
 
 
-        myAdapter = new SearchAdapter(requireContext(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),"");
+        myAdapter = new SearchAdapter(requireContext(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),"",this);
         recyclerView.setAdapter(myAdapter);
         setupFilterChips();
 
@@ -159,5 +163,11 @@ public class SearchFragment extends Fragment implements SearchView {
                 }
             });
         }
+    }
+
+    @Override
+    public void onImageClickAction(String filter) {
+        SearchFragmentDirections.ActionSearchFragmentToSearchListFragment action = SearchFragmentDirections.actionSearchFragmentToSearchListFragment(filter);
+        Navigation.findNavController(myView).navigate(action);
     }
 }

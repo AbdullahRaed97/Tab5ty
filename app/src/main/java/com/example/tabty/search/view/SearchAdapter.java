@@ -16,24 +16,27 @@ import com.example.tabty.R;
 import com.example.tabty.model.network.POJOs.Category;
 import com.example.tabty.model.network.POJOs.Country;
 import com.example.tabty.model.network.POJOs.Ingredient;
+import com.example.tabty.utilities.Utilities;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder> {
 
-    Context context;
-    List<Country> countries;
-    List<Ingredient> ingredients;
-    List<Category> categories;
-    String type;
+    private Context context;
+    private List<Country> countries;
+    private List<Ingredient> ingredients;
+    private List<Category> categories;
+    private String type;
+    private OnImageClickListener listener;
     public SearchAdapter(Context context, List<Country> countries, List<Category> categories
-            , List<Ingredient> ingredients, String type) {
+            , List<Ingredient> ingredients, String type,OnImageClickListener listener) {
         this.context = context;
         this.countries = countries;
         this.ingredients=ingredients;
         this.type=type;
         this.categories=categories;
+        this.listener=listener;
     }
     @NonNull
     @Override
@@ -52,18 +55,27 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         switch (type) {
             case "Country":
                 holder.nameText.setText(countries.get(position).getStrArea());
-                //Glide.with(context).load("https://www.themealdb.com/images/ingredients/"+ingredients.get(position)+"-Small.png")
-                //.apply(new RequestOptions().override(500,500)).into(holder.image);}
+                Glide.with(context).load("https://www.themealdb.com/images/icons/flags/big/64/"+ Utilities.getCountryNameCode(countries.get(position).getStrArea())+".png")
+                        .apply(new RequestOptions().override(500, 500)).into(holder.image);
+                holder.image.setOnClickListener(v->{
+                    listener.onImageClickAction(countries.get(position).getStrArea());
+                });
                 break;
             case "Ingredient":
                 holder.nameText.setText(ingredients.get(position).getStrIngredient());
                 Glide.with(context).load("https://www.themealdb.com/images/ingredients/" + ingredients.get(position).getStrIngredient() + "-Small.png")
                         .apply(new RequestOptions().override(500, 500)).into(holder.image);
+                holder.image.setOnClickListener(v->{
+                    listener.onImageClickAction(ingredients.get(position).getStrIngredient());
+                });
                 break;
             case "Category":
                 holder.nameText.setText(categories.get(position).getStrCategory());
                 Glide.with(context).load(categories.get(position).getStrCategoryThumb())
                         .apply(new RequestOptions().override(500, 500)).into(holder.image);
+                holder.image.setOnClickListener(v->{
+                    listener.onImageClickAction(categories.get(position).getStrCategory());
+                });
                 break;
         }
     }
@@ -96,43 +108,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         this.type=type;
         notifyDataSetChanged();
     }
-    private String getCountryNameCode(String countryName) {
-        countryName = countryName.toLowerCase();
 
-        switch (countryName) {
-            case "american": return "us";
-            case "british": return "gb";
-            case "canadian": return "ca";
-            case "chinese": return "cn";
-            case "croatian": return "hr";
-            case "dutch": return "nl";
-            case "egyptian": return "eg";
-            case "french": return "fr";
-            case "greek": return "gr";
-            case "indian": return "in";
-            case "irish": return "ie";
-            case "italian": return "it";
-            case "jamaican": return "jm";
-            case "japanese": return "jp";
-            case "kenyan": return "ke";
-            case "malaysian": return "my";
-            case "mexican": return "mx";
-            case "moroccan": return "ma";
-            case "polish": return "pl";
-            case "portuguese": return "pt";
-            case "russian": return "ru";
-            case "spanish": return "es";
-            case "thai": return "th";
-            case "tunisian": return "tn";
-            case "turkish": return "tr";
-            case "vietnamese": return "vn";
-            case "filipino": return "ph";
-            case "ukrainian": return "ua";
-            case "uruguayan": return "uy";
-            case "norwegian": return "no";
-            default: return countryName;
-        }
-    }
     class ViewHolder extends RecyclerView.ViewHolder {
         ImageView image;
         TextView nameText;
