@@ -107,9 +107,25 @@
         android:id="@+id/searchFragment"
         android:name="com.example.tabty.search.view.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_searchListFragment"
+            app:destination="@id/searchListFragment" />
+    </fragment>
     <action
         android:id="@+id/action_global_searchFragment"
         app:destination="@id/searchFragment"
         app:launchSingleTop="true" />
+    <fragment
+        android:id="@+id/searchListFragment"
+        android:name="com.example.tabty.searchlist.SearchListFragment"
+        android:label="fragment_search_list"
+        tools:layout="@layout/fragment_search_list" >
+        <action
+            android:id="@+id/action_searchListFragment_to_mealFragment"
+            app:destination="@id/mealFragment" />
+        <argument
+            android:name="filter"
+            app:argType="string" />
+    </fragment>
 </navigation>

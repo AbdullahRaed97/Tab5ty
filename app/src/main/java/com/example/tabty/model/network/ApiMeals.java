@@ -30,7 +30,7 @@ public interface ApiMeals {
         //return CountriesResponse obj contain List(meals) of all countries name
 
         @GET("lookup.php")
-        Single<MealResponse> getFullDetailedMeal(@Query("i") String id );
+        Single<MealResponse> getFullDetailedMealByID(@Query("i") String id );
         //return all details of specific meal by its id in ResponseMeal obj contain List(meals) having one meal only
 
         @GET("filter.php")
