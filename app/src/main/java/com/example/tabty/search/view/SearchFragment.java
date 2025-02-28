@@ -29,6 +29,7 @@ import com.example.tabty.model.network.POJOs.Category;
 import com.example.tabty.model.network.POJOs.Country;
 import com.example.tabty.model.network.POJOs.Ingredient;
 import com.example.tabty.search.presenter.SearchPresenter;
+import com.example.tabty.utilities.Utilities;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 
@@ -63,7 +64,7 @@ public class SearchFragment extends Fragment implements SearchView ,OnImageClick
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        menuButton=view.findViewById(R.id.imageButton);
+        menuButton=view.findViewById(R.id.searchMenuBtn);
         searchBar=view.findViewById(R.id.searchBar);
         chipGroup=view.findViewById(R.id.chipGroup);
         recyclerView=view.findViewById(R.id.searchRecyclerView);
@@ -84,7 +85,9 @@ public class SearchFragment extends Fragment implements SearchView ,OnImageClick
         recyclerView.setAdapter(myAdapter);
         setupFilterChips();
 
-
+        menuButton.setOnClickListener(v->{
+            Utilities.openDrawer(requireActivity());
+        });
     }
 
     @Override
