@@ -1,4 +1,4 @@
-package com.example.tabty.profile.view;
+package com.example.tabty.profile.presenter;
 
 import android.annotation.SuppressLint;
 import android.os.Build;
@@ -6,11 +6,12 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-
 import com.example.tabty.model.MealsRepository;
 import com.example.tabty.model.PlannedMealRepository;
 import com.example.tabty.model.db.MealEntity;
 import com.example.tabty.model.db.PlannedMeal;
+import com.example.tabty.profile.view.ProfileView;
+import com.example.tabty.utilities.FirebaseManagement;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -189,15 +190,26 @@ public class ProfilePresenter {
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        myView.onBackUpSuccess(e.getLocalizedMessage());
+                        myView.onBackUpFailure(e.getLocalizedMessage());
                     }
                 });
     }
-@RequiresApi(api = Build.VERSION_CODES.O)
-private LocalDate getLocalDate(Map<String,Object> obj){
-        long day = (long) obj.get("dayOfMonth");
-        long year = (long) obj.get("year");
-        long month = (long) obj.get("monthValue");
-        return LocalDate.of((int) year,(int) month, (int)day);
-}
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private LocalDate getLocalDate(Map<String,Object> obj){
+            long day = (long) obj.get("dayOfMonth");
+            long year = (long) obj.get("year");
+            long month = (long) obj.get("monthValue");
+            return LocalDate.of((int) year,(int) month, (int)day);
+    }
+    public void logout(){
+        mealRepo.deleteAllMeals()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe();
+        plannedMealRepository.deleteAllPlannedMeal()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe();
+        FirebaseManagement.logoutFromFirebase();
+    }
 }

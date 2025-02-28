@@ -1,8 +1,9 @@
-package com.example.tabty.profile.presenter;
+package com.example.tabty.profile.view;
 
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -20,9 +21,9 @@ import com.example.tabty.model.PlannedMealRepository;
 import com.example.tabty.model.db.MealsLocalDataSource;
 import com.example.tabty.model.db.PlannedMealLocalDataSource;
 import com.example.tabty.model.network.MealRemoteDataSource;
-import com.example.tabty.profile.view.ProfilePresenter;
-import com.example.tabty.profile.view.ProfileView;
+import com.example.tabty.profile.presenter.ProfilePresenter;
 import com.example.tabty.utilities.FirebaseManagement;
+import com.example.tabty.utilities.Utilities;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -73,7 +74,7 @@ public class ProfileFragment extends Fragment implements ProfileView {
                     .setTitle("Logout")
                     .setMessage("Are you sure you want to logout ?")
                     .setPositiveButton("Yes", (dialog, which) -> {
-                        FirebaseManagement.logoutFromFirebase();
+                        presenter.logout();
                         navController.navigate(R.id.action_global_loginFragment);
                     })
                     .setNegativeButton("Cancel", (dialog, which) -> {
@@ -96,6 +97,10 @@ public class ProfileFragment extends Fragment implements ProfileView {
 
         backUpBtn.setOnClickListener(v->{
             presenter.dataBackUp();
+        });
+
+        menuButton.setOnClickListener(v->{
+            Utilities.openDrawer(requireActivity());
         });
     }
 
