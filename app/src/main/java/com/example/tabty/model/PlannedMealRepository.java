@@ -3,18 +3,15 @@ package com.example.tabty.model;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
-import androidx.lifecycle.LiveData;
 
 import com.example.tabty.model.db.PlannedMeal;
 import com.example.tabty.model.db.PlannedMealLocalDataSource;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Flowable;
-import io.reactivex.rxjava3.core.Single;
 
 public class PlannedMealRepository {
     PlannedMealLocalDataSource localDataSource;
@@ -43,5 +40,8 @@ public class PlannedMealRepository {
     }
     public Flowable<List<PlannedMeal>> getAllPlannedMeal(){
         return localDataSource.getAllPlannedMeal();
+    }
+    public Completable deleteAllPlannedMeal(){
+        return localDataSource.deleteAllPlannedMeal();
     }
 }

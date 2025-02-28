@@ -66,4 +66,7 @@ public class MealsRepository {
     public Single<MealResponse>getAllMealsByCategory(String category){
         return remoteDataSource.getAllMealsByCategory(category);
     }
+    public Completable deleteAllMeals(){
+        return localDataSource.deleteAllMeals();
+    }
 }

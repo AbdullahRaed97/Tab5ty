@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,7 +17,11 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 import com.example.tabty.R;
 import com.example.tabty.common.presenter.MainPresenter;
-import com.example.tabty.utilities.FirebaseManagement;
+import com.example.tabty.model.MealsRepository;
+import com.example.tabty.model.PlannedMealRepository;
+import com.example.tabty.model.db.MealsLocalDataSource;
+import com.example.tabty.model.db.PlannedMealLocalDataSource;
+import com.example.tabty.model.network.MealRemoteDataSource;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationView;
 
@@ -36,9 +41,13 @@ public class MainActivity extends AppCompatActivity implements MainView{
         navigationView=findViewById(R.id.navView);
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.fragmentContainerView);
+
         sharedPreferences=getSharedPreferences(SHARED_PPEF_NAME,MODE_PRIVATE);
 
-        presenter= new MainPresenter(this);
+        presenter= new MainPresenter(this
+        , MealsRepository.getInstance(MealRemoteDataSource.getInstance(),new MealsLocalDataSource(this))
+        , PlannedMealRepository.getInstance(new PlannedMealLocalDataSource(this)));
+
         presenter.checkNetworkConnectivity(this);
         presenter.setSharedPreferencesValues(sharedPreferences);
 
@@ -62,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements MainView{
                             .setTitle("Logout")
                             .setMessage("Are you sure you want to logout ?")
                             .setPositiveButton("Yes", (dialog, which) -> {
-                                FirebaseManagement.logoutFromFirebase();
+                                presenter.logout();
                                 navController.navigate(R.id.action_global_loginFragment);
                             })
                             .setNegativeButton("Cancel", (dialog, which) -> {

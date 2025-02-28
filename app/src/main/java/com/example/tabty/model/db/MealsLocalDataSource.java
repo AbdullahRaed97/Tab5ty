@@ -22,4 +22,7 @@ public class MealsLocalDataSource {
     public Flowable<List<MealEntity>> getAllMeals(){
         return dao.getAllMeals();
     }
+    public Completable deleteAllMeals(){
+        return dao.deleteAllMeals();
+    }
 }
