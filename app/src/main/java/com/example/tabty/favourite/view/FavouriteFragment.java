@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import com.example.tabty.R;
 import com.example.tabty.favourite.presenter.FavouritePresenter;
@@ -16,6 +17,7 @@ import com.example.tabty.model.MealsRepository;
 import com.example.tabty.model.db.MealEntity;
 import com.example.tabty.model.db.MealsLocalDataSource;
 import com.example.tabty.model.network.MealRemoteDataSource;
+import com.example.tabty.utilities.Utilities;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -29,6 +31,7 @@ public class FavouriteFragment extends Fragment implements OnDeleteClickListener
     MealsRepository myRepo;
     View myView;
     RecyclerView recyclerView;
+    ImageButton favMenuBtn;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,7 @@ public class FavouriteFragment extends Fragment implements OnDeleteClickListener
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = view.findViewById(R.id.favRecyclerView);
+        favMenuBtn = view.findViewById(R.id.favMenuBtn);
         myView=view;
 
         myRepo =MealsRepository.getInstance(MealRemoteDataSource.getInstance(),new MealsLocalDataSource(getContext()));
@@ -57,6 +61,10 @@ public class FavouriteFragment extends Fragment implements OnDeleteClickListener
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(myAdapter);
+
+        favMenuBtn.setOnClickListener(v->{
+            Utilities.openDrawer(requireActivity());
+        });
     }
 
     @Override

@@ -1,5 +1,14 @@
 package com.example.tabty.utilities;
 
+import static android.app.PendingIntent.getActivity;
+
+import android.app.Activity;
+import android.content.Context;
+
+import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.example.tabty.R;
+
 public class Utilities {
     public static String getCountryNameCode(String countryName) {
         countryName = countryName.toLowerCase();
@@ -37,5 +46,9 @@ public class Utilities {
             case "norwegian": return "no";
             default: return countryName;
         }
+    }
+    public static void openDrawer(Activity activity){
+        DrawerLayout myDrawer = activity.findViewById(R.id.mainDrawer);
+        myDrawer.open();
     }
 }

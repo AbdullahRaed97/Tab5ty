@@ -1,4 +1,4 @@
-package com.example.tabty.searchlist;
+package com.example.tabty.searchlist.view;
 
 import com.example.tabty.model.db.Meal;
 

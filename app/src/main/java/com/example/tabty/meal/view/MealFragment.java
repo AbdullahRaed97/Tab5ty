@@ -53,9 +53,9 @@ public class MealFragment extends Fragment implements MealView {
     IngredientsAdapter myAdapter;
     YouTubePlayerView youtubeView;
     MealPresenter presenter;
-    MealEntity myMeal;
     NavController navController;
     Meal recievedMeal;
+    ImageButton mealMenuBtn;
         private static final String TAG = "MealFragment";
         @Override
         public void onCreate(Bundle savedInstanceState) {
@@ -82,6 +82,7 @@ public class MealFragment extends Fragment implements MealView {
             instText=view.findViewById(R.id.instructionsText);
             recyclerView=view.findViewById(R.id.ingredientRecyclerView);
             youtubeView=view.findViewById(R.id.youtubeView);
+            mealMenuBtn=view.findViewById(R.id.mealMenuBtn);
             myView=view;
             navController= Navigation.findNavController(myView);
             MealsRepository myRepo = MealsRepository.getInstance(MealRemoteDataSource.getInstance(),new MealsLocalDataSource(getContext()));
@@ -131,6 +132,10 @@ public class MealFragment extends Fragment implements MealView {
             LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
             recyclerView.setLayoutManager(layoutManager);
             layoutManager.setOrientation(GridLayoutManager.HORIZONTAL);
+
+            mealMenuBtn.setOnClickListener(v->{
+                Utilities.openDrawer(requireActivity());
+            });
 
         }
 

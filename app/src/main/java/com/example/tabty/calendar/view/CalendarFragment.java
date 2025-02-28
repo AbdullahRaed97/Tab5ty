@@ -14,12 +14,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
+import android.widget.ImageButton;
 
 import com.example.tabty.R;
 import com.example.tabty.calendar.presenter.CalendarPresenter;
 import com.example.tabty.model.PlannedMealRepository;
 import com.example.tabty.model.db.PlannedMeal;
 import com.example.tabty.model.db.PlannedMealLocalDataSource;
+import com.example.tabty.utilities.Utilities;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -35,6 +37,7 @@ public class CalendarFragment extends Fragment implements OnCalendarDeleteClickL
     View myView;
     RecyclerView recyclerView;
     CalendarAdapter myAdapter;
+    ImageButton calMenuBtn;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +56,7 @@ public class CalendarFragment extends Fragment implements OnCalendarDeleteClickL
         super.onViewCreated(view, savedInstanceState);
         recyclerView=view.findViewById(R.id.calRecyclerView);
         calendarView = view.findViewById(R.id.calendarView);
+        calMenuBtn = view.findViewById(R.id.calMenuBtn);
         myView=view;
 
         myAdapter = new CalendarAdapter(requireContext(),new ArrayList<>(),this);
@@ -72,6 +76,10 @@ public class CalendarFragment extends Fragment implements OnCalendarDeleteClickL
                 presenter.getAllPlannedMealsByDate(LocalDate.of(year,month,dayOfMonth));
                 Log.i("TAG", "onSelectedDayChange: "+selectedDate.getTime());
             }
+        });
+
+        calMenuBtn.setOnClickListener(v->{
+            Utilities.openDrawer(requireActivity());
         });
     }
     @Override
