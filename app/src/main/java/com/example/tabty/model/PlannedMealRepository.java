@@ -41,4 +41,7 @@ public class PlannedMealRepository {
     public Completable deletePlannedMeal(PlannedMeal meal){
         return localDataSource.deletePlannedMeal(meal);
     }
+    public Flowable<List<PlannedMeal>> getAllPlannedMeal(){
+        return localDataSource.getAllPlannedMeal();
+    }
 }

@@ -1,4 +1,4 @@
-package com.example.tabty.profile.view;
+package com.example.tabty.profile.presenter;
 
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -6,6 +6,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,17 +15,29 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.example.tabty.R;
+import com.example.tabty.model.MealsRepository;
+import com.example.tabty.model.PlannedMealRepository;
+import com.example.tabty.model.db.MealsLocalDataSource;
+import com.example.tabty.model.db.PlannedMealLocalDataSource;
+import com.example.tabty.model.network.MealRemoteDataSource;
+import com.example.tabty.profile.view.ProfilePresenter;
+import com.example.tabty.profile.view.ProfileView;
 import com.example.tabty.utilities.FirebaseManagement;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.snackbar.Snackbar;
 
 
-public class ProfileFragment extends Fragment {
+public class ProfileFragment extends Fragment implements ProfileView {
 
     ImageButton menuButton;
     Button logoutButton;
     Button goToFavBtn;
     Button goToCalBtn;
     NavController navController;
+    Button syncData ;
+    ProfilePresenter presenter;
+    Button backUpBtn;
+    View myView;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +58,15 @@ public class ProfileFragment extends Fragment {
         logoutButton = view.findViewById(R.id.logoutBtn);
         goToFavBtn = view.findViewById(R.id.goToFavBtn);
         goToCalBtn = view.findViewById(R.id.goToCalBtn);
+        syncData = view.findViewById(R.id.syncButton);
+        backUpBtn = view.findViewById(R.id.backUpBtn);
+        myView=view;
         navController = Navigation.findNavController(view);
+
+        presenter = new ProfilePresenter(this,
+                MealsRepository.getInstance(MealRemoteDataSource.getInstance()
+                ,new MealsLocalDataSource(requireContext()))
+        ,PlannedMealRepository.getInstance(new PlannedMealLocalDataSource(requireContext())));
 
         logoutButton.setOnClickListener(v->{
             new MaterialAlertDialogBuilder(requireContext())
@@ -67,5 +89,37 @@ public class ProfileFragment extends Fragment {
         goToCalBtn.setOnClickListener(v->{
             navController.navigate(R.id.action_global_calendarFragment);
         });
+
+        syncData.setOnClickListener(v->{
+            presenter.syncData();
+        });
+
+        backUpBtn.setOnClickListener(v->{
+            presenter.dataBackUp();
+        });
+    }
+
+    @Override
+    public void onSyncDataSuccess(String success) {
+        Snackbar.make(myView,success,Snackbar.LENGTH_SHORT).show();
+        Log.i("TAG", "onSyncDataSuccess: "+success);
+    }
+
+    @Override
+    public void onSyncDataFailure(String errorMessage) {
+        Snackbar.make(myView,errorMessage,Snackbar.LENGTH_SHORT).show();
+        Log.i("TAG", "onSyncDataFailure: "+errorMessage);
+    }
+
+    @Override
+    public void onBackUpSuccess(String success) {
+        Snackbar.make(myView,success,Snackbar.LENGTH_SHORT).show();
+        Log.i("TAG", "onBackUpSuccess: "+success);
+    }
+
+    @Override
+    public void onBackUpFailure(String errorMessage) {
+        Snackbar.make(myView,errorMessage,Snackbar.LENGTH_SHORT).show();
+        Log.i("TAG", "onBackUpFailure: "+errorMessage);
     }
 }

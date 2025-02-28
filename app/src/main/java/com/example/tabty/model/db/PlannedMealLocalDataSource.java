@@ -37,4 +37,7 @@ public class PlannedMealLocalDataSource {
     public Completable deletePlannedMeal(PlannedMeal meal) {
         return dao.deletePlannedMeal(meal);
     }
+    public Flowable<List<PlannedMeal>> getAllPlannedMeal(){
+        return dao.getAllPlannedMeal();
+    }
 }
