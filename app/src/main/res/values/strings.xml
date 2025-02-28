@@ -37,4 +37,8 @@
     <string name="countryChip">Country</string>
     <string name="client_id">642063047197-sdbja5usokslu78hdeg7mftup91t0s44.apps.googleusercontent.com</string>
     <string name="registerBtn">Register</string>
+    <string name="search_by_category_hint">Search by category</string>
+    <string name="search_by_meal_hint">Search by meal</string>
+    <string name="welcomeMeal">Here is your chosen detailed meal !</string>
+    <string name="welcomeFavourite">Here is your chosen Favourite meals ! 😋</string>
 </resources>

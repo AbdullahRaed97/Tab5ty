@@ -15,13 +15,15 @@
         android:drawableStart="@drawable/search"
         android:inputType="text"
         android:paddingStart="10dp"
+        android:focusable="true"
+        android:hint="@string/search_by_category_hint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.292"
-        app:layout_constraintStart_toEndOf="@+id/imageButton"
+        app:layout_constraintStart_toEndOf="@+id/searchMenuBtn"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/searchMenuBtn"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="16dp"

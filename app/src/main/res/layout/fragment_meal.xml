@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
@@ -11,24 +11,53 @@
         android:layout_marginTop="30dp"
         tools:context=".meal.view.MealFragment" >
 
+        <ImageButton
+            android:id="@+id/mealMenuBtn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="55dp"
+            android:background="@drawable/menu"
+            android:backgroundTint="@color/Primary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/welcomeMeal_tv"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:fontFamily="cursive"
+            android:text="@string/welcomeMeal"
+            android:gravity="center"
+            android:textColor="@color/Secondary"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.307"
+            app:layout_constraintStart_toEndOf="@+id/mealMenuBtn"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_marginHorizontal="20dp"
             android:layout_height="200dp"
+            app:cardElevation="4dp"
+            android:layout_marginTop="20dp"
             android:id="@+id/imageCardView"
+            app:layout_constraintTop_toBottomOf="@+id/welcomeMeal_tv"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+
             android:elevation="6dp"
             app:cardCornerRadius="15dp"
             tools:layout_editor_absoluteX="1dp"
             tools:layout_editor_absoluteY="43dp" >
             <ImageView
                 android:id="@+id/meal_iv"
-                android:layout_width="325dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:scaleType="centerCrop"
-
+                android:scaleType="fitXY"
                 android:padding="4dp"
                 tools:src="@tools:sample/avatars" />
             <ImageButton
@@ -38,16 +67,19 @@
                 android:layout_gravity="end"
                 android:layout_marginEnd="8dp"
                 android:layout_marginTop="8dp"
-                android:background="@color/Primary"
+                android:backgroundTint="@color/Secondary"
+                android:background="@drawable/corner_radius"
                 android:src="@drawable/favourite" />
+
             <ImageButton
                 android:id="@+id/mealCalendarButton"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_gravity="start"
                 android:layout_marginStart="8dp"
-                android:backgroundTint="@color/Primary"
+                android:background="@drawable/corner_radius"
                 android:layout_marginTop="8dp"
+                android:backgroundTint="@color/Secondary"
                 android:src="@drawable/calendar" />
 
         </androidx.cardview.widget.CardView>
@@ -58,7 +90,8 @@
             android:layout_marginHorizontal="20dp"
             android:layout_height="100dp"
             app:cardCornerRadius="15dp"
-            android:backgroundTint="@color/Surface"
+            app:cardElevation="4dp"
+            android:backgroundTint="@color/onSecondary"
             app:layout_constraintTop_toBottomOf="@id/imageCardView"
             android:layout_marginTop="15dp"
             tools:layout_editor_absoluteX="1dp"
@@ -99,14 +132,16 @@
                 android:textSize="20sp"
                 tools:text="Italian"
                 />
+
             <ImageView
-                android:layout_width="30dp"
                 android:id="@+id/countryFlag_iv"
-                android:layout_height="30dp"
+                android:layout_width="60dp"
+                android:layout_height="50dp"
                 android:layout_gravity="center_vertical"
-                android:layout_marginTop="25dp"
-                android:layout_marginStart="150dp"
-                tools:src="@drawable/profile"/>
+                android:scaleType="centerCrop"
+                android:layout_marginStart="190dp"
+                android:layout_marginTop="15dp"
+                tools:src="@drawable/profile" />
         </androidx.cardview.widget.CardView>
 
         <TextView
@@ -131,6 +166,7 @@
             app:layout_constraintTop_toBottomOf="@id/instructions_tv"
             app:cardCornerRadius="15dp"
             android:layout_marginTop="15dp"
+            app:cardElevation="4dp"
             android:layout_marginHorizontal="20dp"
             tools:layout_editor_absoluteX="1dp"
             tools:layout_editor_absoluteY="405dp" >
@@ -149,13 +185,14 @@
 
       <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
           android:layout_width="match_parent"
-          android:layout_height="wrap_content"
+          android:layout_height="300dp"
           android:id="@+id/youtubeView"
           app:layout_constraintTop_toBottomOf="@+id/inst_cardView"
           android:layout_marginTop="15dp"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintEnd_toEndOf="parent"
-          android:layout_marginHorizontal="20dp"
+          android:layout_marginHorizontal="10dp"
+          android:layout_marginBottom="20dp"
           app:autoPlay="false"
           />
 
@@ -185,4 +222,4 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ingredient_tv" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

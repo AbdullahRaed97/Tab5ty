@@ -118,7 +118,7 @@
         app:launchSingleTop="true" />
     <fragment
         android:id="@+id/searchListFragment"
-        android:name="com.example.tabty.searchlist.SearchListFragment"
+        android:name="com.example.tabty.searchlist.view.SearchListFragment"
         android:label="fragment_search_list"
         tools:layout="@layout/fragment_search_list" >
         <action

@@ -28,14 +28,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="30dp"
             android:text="@string/today_random_meal"
             android:textColor="@color/Primary"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/home_cardView"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/homeWelcomeText" />
+            app:layout_constraintTop_toBottomOf="@id/welcomeHome_tv" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/home_cardView"
@@ -100,22 +100,19 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
-            android:id="@+id/homeWelcomeText"
-            android:layout_width="0dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="50dp"
-            android:padding="10dp"
-            android:textColor="@color/onSurface"
-            android:fontFamily="cursive"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:textSize="28sp"
             android:text="@string/homeWelcome"
-            app:layout_constraintBottom_toTopOf="@+id/todayMeal_tv"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="55dp"
+            android:id="@+id/welcomeHome_tv"
+            android:gravity="center"
+            android:layout_marginStart="15dp"
+            android:textStyle="bold"
+            android:fontFamily="cursive"
+            android:textColor="@color/Secondary"
+            android:textSize="28sp"
+            app:layout_constraintStart_toEndOf="@+id/homeMenuButton"/>
 
         <ImageButton
             android:layout_width="30dp"
@@ -123,9 +120,9 @@
             android:background="@drawable/menu"
             android:backgroundTint="@color/Primary"
             android:id="@+id/homeMenuButton"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="65dp"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="16dp"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="20dp"
             tools:layout_editor_absoluteY="49dp" />

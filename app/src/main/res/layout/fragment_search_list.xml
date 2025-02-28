@@ -4,27 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".searchlist.SearchListFragment">
+    tools:context=".searchlist.view.SearchListFragment">
 
     <EditText
         android:id="@+id/searchListSearchBar"
         android:layout_width="300dp"
         android:layout_height="45dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="60dp"
         android:background="@drawable/corner_radius"
         android:drawableStart="@drawable/search"
+        android:focusable="true"
+        android:hint="@string/search_by_meal_hint"
         android:inputType="text"
         android:paddingStart="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/sl_imageButton"
+        app:layout_constraintHorizontal_bias="0.369"
+        app:layout_constraintStart_toEndOf="@+id/searchListMenuBtn"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/sl_imageButton"
+        android:id="@+id/searchListMenuBtn"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="55dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="65dp"
         android:background="@drawable/menu"
         android:backgroundTint="@color/Primary"
         app:layout_constraintStart_toStartOf="parent"
