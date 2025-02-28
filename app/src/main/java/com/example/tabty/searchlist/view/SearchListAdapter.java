@@ -1,4 +1,4 @@
-package com.example.tabty.searchlist;
+package com.example.tabty.searchlist.view;
 
 import android.content.Context;
 import android.view.LayoutInflater;

@@ -1,10 +1,12 @@
-package com.example.tabty.searchlist;
+package com.example.tabty.searchlist.presenter;
 
 import android.annotation.SuppressLint;
 import android.util.Log;
 
 import com.example.tabty.model.MealsRepository;
 import com.example.tabty.model.db.Meal;
+import com.example.tabty.searchlist.view.SearchListAdapter;
+import com.example.tabty.searchlist.view.SearchListView;
 
 import java.util.List;
 

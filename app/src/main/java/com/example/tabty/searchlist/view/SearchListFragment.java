@@ -1,4 +1,4 @@
-package com.example.tabty.searchlist;
+package com.example.tabty.searchlist.view;
 
 import android.os.Bundle;
 
@@ -24,12 +24,14 @@ import com.example.tabty.model.MealsRepository;
 import com.example.tabty.model.db.Meal;
 import com.example.tabty.model.db.MealsLocalDataSource;
 import com.example.tabty.model.network.MealRemoteDataSource;
+import com.example.tabty.searchlist.presenter.SearchListPresenter;
+import com.example.tabty.utilities.Utilities;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class SearchListFragment extends Fragment implements SearchListView,OnImageClickListener{
+public class SearchListFragment extends Fragment implements SearchListView, OnImageClickListener {
 
     String filter;
     RecyclerView recyclerView;
@@ -59,7 +61,7 @@ public class SearchListFragment extends Fragment implements SearchListView,OnIma
         super.onViewCreated(view, savedInstanceState);
         recyclerView=view.findViewById(R.id.searchListRecyclerView);
         searchBar=view.findViewById(R.id.searchListSearchBar);
-        menuButton=view.findViewById(R.id.sl_imageButton);
+        menuButton=view.findViewById(R.id.searchListMenuBtn);
         navController= Navigation.findNavController(view);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
@@ -93,6 +95,9 @@ public class SearchListFragment extends Fragment implements SearchListView,OnIma
         myAdapter = new SearchListAdapter(requireContext(),new ArrayList<>(),this);
         recyclerView.setAdapter(myAdapter);
 
+        menuButton.setOnClickListener(v->{
+            Utilities.openDrawer(requireActivity());
+        });
     }
 
     @Override
