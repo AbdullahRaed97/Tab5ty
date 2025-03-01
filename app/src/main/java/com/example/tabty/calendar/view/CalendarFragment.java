@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,7 +32,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class CalendarFragment extends Fragment implements OnCalendarDeleteClickListener , com.example.tabty.calendar.view.CalendarView {
+public class CalendarFragment extends Fragment implements OnCalendarItemClickListener, com.example.tabty.calendar.view.CalendarView {
     CalendarView calendarView;
     CalendarPresenter presenter;
     PlannedMealRepository myRepo;
@@ -38,6 +40,7 @@ public class CalendarFragment extends Fragment implements OnCalendarDeleteClickL
     RecyclerView recyclerView;
     CalendarAdapter myAdapter;
     ImageButton calMenuBtn;
+    NavController navController;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +61,8 @@ public class CalendarFragment extends Fragment implements OnCalendarDeleteClickL
         calendarView = view.findViewById(R.id.calendarView);
         calMenuBtn = view.findViewById(R.id.calMenuBtn);
         myView=view;
+
+        navController = Navigation.findNavController(view);
 
         myAdapter = new CalendarAdapter(requireContext(),new ArrayList<>(),this);
         myRepo = PlannedMealRepository.getInstance(new PlannedMealLocalDataSource(requireContext()));
@@ -95,6 +100,13 @@ public class CalendarFragment extends Fragment implements OnCalendarDeleteClickL
                 })
                 .show();
 
+    }
+
+    @Override
+    public void onCalendarItemClickListener(String mealID) {
+        CalendarFragmentDirections.ActionCalendarFragmentToMealFragment action =
+                CalendarFragmentDirections.actionCalendarFragmentToMealFragment(mealID,true);
+        navController.navigate(action);
     }
 
     @Override

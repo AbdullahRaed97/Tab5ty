@@ -65,6 +65,9 @@
         <argument
             android:name="mealID"
             app:argType="string" />
+        <argument
+            android:name="status"
+            app:argType="boolean" />
     </fragment>
     <action
         android:id="@+id/action_global_homeFragment"
@@ -80,7 +83,11 @@
         android:id="@+id/favouriteFragment"
         android:name="com.example.tabty.favourite.view.FavouriteFragment"
         android:label="fragment_favourite"
-        tools:layout="@layout/fragment_favourite" />
+        tools:layout="@layout/fragment_favourite" >
+        <action
+            android:id="@+id/action_favouriteFragment_to_mealFragment"
+            app:destination="@id/mealFragment" />
+    </fragment>
     <action
         android:id="@+id/action_global_favouriteFragment3"
         app:destination="@id/favouriteFragment"
@@ -89,7 +96,11 @@
         android:id="@+id/calendarFragment"
         android:name="com.example.tabty.calendar.view.CalendarFragment"
         android:label="fragment_calendar"
-        tools:layout="@layout/fragment_calendar" />
+        tools:layout="@layout/fragment_calendar" >
+        <action
+            android:id="@+id/action_calendarFragment_to_mealFragment"
+            app:destination="@id/mealFragment" />
+    </fragment>
     <action
         android:id="@+id/action_global_calendarFragment"
         app:destination="@id/calendarFragment"

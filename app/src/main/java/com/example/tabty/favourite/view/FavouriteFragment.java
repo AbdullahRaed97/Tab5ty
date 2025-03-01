@@ -4,6 +4,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -24,7 +26,7 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FavouriteFragment extends Fragment implements OnDeleteClickListener ,FavouriteView{
+public class FavouriteFragment extends Fragment implements OnFavItemClickListener ,FavouriteView{
 
     FavouriteAdapter myAdapter;
     FavouritePresenter presenter;
@@ -32,6 +34,7 @@ public class FavouriteFragment extends Fragment implements OnDeleteClickListener
     View myView;
     RecyclerView recyclerView;
     ImageButton favMenuBtn;
+    NavController navController;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,9 +55,11 @@ public class FavouriteFragment extends Fragment implements OnDeleteClickListener
         favMenuBtn = view.findViewById(R.id.favMenuBtn);
         myView=view;
 
+        navController= Navigation.findNavController(view);
+
         myRepo =MealsRepository.getInstance(MealRemoteDataSource.getInstance(),new MealsLocalDataSource(getContext()));
         presenter = new FavouritePresenter(myRepo,this);
-         presenter.getAllLocalMeals();
+        presenter.getAllLocalMeals();
 
         myAdapter = new FavouriteAdapter(getContext(),new ArrayList<>(),this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
@@ -79,6 +84,13 @@ public class FavouriteFragment extends Fragment implements OnDeleteClickListener
 
                 })
                 .show();
+    }
+
+    @Override
+    public void onCardClickAction(String mealID) {
+        FavouriteFragmentDirections.ActionFavouriteFragmentToMealFragment action =
+                FavouriteFragmentDirections.actionFavouriteFragmentToMealFragment(mealID,true);
+        navController.navigate(action);
     }
 
     @Override

@@ -21,7 +21,7 @@ public class PlannedMealLocalDataSource {
     PlannedMealDao dao;
 
     public PlannedMealLocalDataSource(Context context) {
-        PlannedMealDatabase plannedMealDatabase = PlannedMealDatabase.getInstance(context);
+        MealsDataBase plannedMealDatabase = MealsDataBase.getInstance(context);
         dao = plannedMealDatabase.getPlannedMealDao();
     }
 

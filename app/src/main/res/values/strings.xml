@@ -30,7 +30,7 @@
     <string name="continue_with_google">Continue with Google</string>
     <string name="tab_ty">Tabخty</string>
     <string name="go_as_a_guest">Go as a guest</string>
-    <string name="retry">Retry</string>
+    <string name="goToFav">Go to Favourites</string>
     <string name="noInternetMessage">OOPS ! it seems your Internet connection is lost</string>
     <string name="category">Category</string>
     <string name="ingredient">Ingredient</string>
@@ -44,4 +44,5 @@
     <string name="welcomeHeader">Welcome to Tabخty Where all your dream meals come true !</string>
     <string name="meal_category">Category :</string>
     <string name="backup">Backup</string>
+    <string name="go_to_calendar">Go to Calendar</string>
 </resources>

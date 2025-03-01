@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -22,9 +23,9 @@ import java.util.List;
 public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.ViewHolder> {
     private Context context;
     private List<MealEntity> meals;
-    OnDeleteClickListener listener;
+    OnFavItemClickListener listener;
 
-    public FavouriteAdapter(Context context, List<MealEntity> meals, OnDeleteClickListener listener) {
+    public FavouriteAdapter(Context context, List<MealEntity> meals, OnFavItemClickListener listener) {
         this.context = context;
         this.meals = meals;
         this.listener = listener;
@@ -51,6 +52,9 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.View
         holder.favMealDeleteBtn.setOnClickListener(v->{
             listener.onDeleteClickAction(meals.get(position));
         });
+        holder.favCardView.setOnClickListener(v->{
+            listener.onCardClickAction(meals.get(position).getIdMeal());
+        });
     }
 
     @Override
@@ -66,6 +70,7 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.View
         TextView favMeal_tv;
         ImageButton favMealDeleteBtn;
         ImageView favMealFlag_iv;
+        CardView favCardView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -73,6 +78,7 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.View
             favMeal_tv = itemView.findViewById(R.id.favMealName_tv);
             favMealFlag_iv = itemView.findViewById(R.id.favMealFlag_iv);
             favMealDeleteBtn = itemView.findViewById(R.id.favMealDeleteBtn);
+            favCardView = itemView.findViewById(R.id.favCardView);
         }
     }
 }
