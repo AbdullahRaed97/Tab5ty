@@ -7,12 +7,15 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.util.Log;
 
+import androidx.annotation.RequiresApi;
+
 import com.example.tabty.meal.view.MealView;
 import com.example.tabty.model.PlannedMealRepository;
 import com.example.tabty.model.db.Meal;
 import com.example.tabty.model.db.MealEntity;
 import com.example.tabty.model.MealsRepository;
 import com.example.tabty.model.db.PlannedMeal;
+import com.example.tabty.utilities.FirestoreManagement;
 
 import java.time.LocalDate;
 import java.util.Calendar;
@@ -56,6 +59,7 @@ public class MealPresenter {
                        myView.onInsertMealFailure(e.getLocalizedMessage());
                    }
                });
+        FirestoreManagement.insertFavMealInFirestore(meal);
     }
 
     public String getVideoKey(String url){
@@ -66,6 +70,7 @@ public class MealPresenter {
             return "";
         }
     }
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void insertLocalPlannedMeal(Meal meal , Context context){
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
@@ -77,9 +82,8 @@ public class MealPresenter {
                     // Handle the selected date
                     Calendar selectedDate = Calendar.getInstance();
                     LocalDate date = null;
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        date = LocalDate.of(selectedYear,selectedMonth,selectedDay);
-                    }
+                    date = LocalDate.of(selectedYear,selectedMonth,selectedDay);
+                    FirestoreManagement.insertPlannedMealInFirestore(new PlannedMeal(meal,date));
                     plannedMealRepo.insertLocalPlannedMeal(new PlannedMeal(meal,date))
                             .subscribeOn(Schedulers.io())
                             .subscribe(new CompletableObserver() {
@@ -99,7 +103,8 @@ public class MealPresenter {
                                 }
                             });
                 },year, month, day);
-        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis()-1000);
+        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
+        datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis()+(1000*1*60*60*24*6));
         datePickerDialog.show();
     }
     public boolean isGuestMode(SharedPreferences sharedPreferences){
