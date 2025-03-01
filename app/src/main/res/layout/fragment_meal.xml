@@ -19,6 +19,7 @@
             android:layout_marginTop="55dp"
             android:background="@drawable/menu"
             android:backgroundTint="@color/Primary"
+            android:scaleType="fitXY"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -88,7 +89,7 @@
             android:layout_width="match_parent"
             android:id="@+id/mealDesc_cardView"
             android:layout_marginHorizontal="20dp"
-            android:layout_height="100dp"
+            android:layout_height="150dp"
             app:cardCornerRadius="15dp"
             app:cardElevation="4dp"
             android:backgroundTint="@color/onSecondary"
@@ -107,13 +108,33 @@
                 android:layout_marginTop="5dp"
                 android:textColor="@color/onSurface"
                 android:text="TextView" />
+            <TextView
+                android:id="@+id/Category_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="55dp"
+                android:textColor="@color/onSurface"
+                android:text="@string/meal_category" />
+            <TextView
+                android:id="@+id/mealCategory_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginStart="110dp"
+                android:layout_marginTop="55dp"
+                android:textColor="@color/onSurface"
+                tools:text="Category" />
 
             <TextView
                 android:id="@+id/dish_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="45dp"
                 android:layout_marginStart="5dp"
                 android:textColor="@color/onSurface"
                 android:textStyle="bold"
@@ -125,7 +146,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="45dp"
                 android:layout_marginStart="85dp"
                 android:textColor="@color/onSurface"
                 android:textStyle="bold"
@@ -133,14 +154,15 @@
                 tools:text="Italian"
                 />
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/countryFlag_iv"
-                android:layout_width="60dp"
+                android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center_vertical"
-                android:scaleType="centerCrop"
-                android:layout_marginStart="190dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginStart="220dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="35dp"
+                app:shapeAppearanceOverlay="@style/CircleShapeAppearance"
                 tools:src="@drawable/profile" />
         </androidx.cardview.widget.CardView>
 

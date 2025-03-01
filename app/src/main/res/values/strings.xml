@@ -41,4 +41,7 @@
     <string name="search_by_meal_hint">Search by meal</string>
     <string name="welcomeMeal">Here is your chosen detailed meal !</string>
     <string name="welcomeFavourite">Here is your chosen Favourite meals ! 😋</string>
+    <string name="welcomeHeader">Welcome to Tabخty Where all your dream meals come true !</string>
+    <string name="meal_category">Category :</string>
+    <string name="backup">Backup</string>
 </resources>
