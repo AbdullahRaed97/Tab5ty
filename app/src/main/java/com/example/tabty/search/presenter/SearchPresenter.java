@@ -1,6 +1,7 @@
 package com.example.tabty.search.presenter;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
 
 import com.example.tabty.model.MealsRepository;
 import com.example.tabty.model.network.POJOs.Category;
@@ -29,21 +30,24 @@ public class SearchPresenter {
         myRepo.getAllIngredients().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map(item -> item.getIngredients())
-                .subscribe(item ->myView.showAllIngredients(item));
+                .subscribe(item ->myView.showAllIngredients(item),
+                        error-> Log.i("TAG", "getRemoteAllMealsByFirstLetter: "+error.getLocalizedMessage()));
     }
     @SuppressLint("CheckResult")
    public void getAllCountries(){
         myRepo.getAllCountries().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map(item -> item.getCountries())
-                .subscribe(item -> myView.showAllCountries(item));
+                .subscribe(item -> myView.showAllCountries(item),
+                        error-> Log.i("TAG", "getRemoteAllMealsByFirstLetter: "+error.getLocalizedMessage()));
     }
     @SuppressLint("CheckResult")
    public void getAllCategories(){
         myRepo.getAllCategories().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map(item -> item.getCategories())
-                .subscribe(item -> myView.showAllCategories(item));
+                .subscribe(item -> myView.showAllCategories(item),
+                        error-> Log.i("TAG", "getRemoteAllMealsByFirstLetter: "+error.getLocalizedMessage()));
     }
     @SuppressLint("CheckResult")
     public void observeOnIngredient(List<Ingredient> ingredients , CharSequence s, SearchAdapter adapter){

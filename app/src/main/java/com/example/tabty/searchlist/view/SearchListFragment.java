@@ -128,7 +128,7 @@ public class SearchListFragment extends Fragment implements SearchListView, OnIm
     @Override
     public void onImageClickAction(String mealID) {
         SearchListFragmentDirections.ActionSearchListFragmentToMealFragment action =
-                SearchListFragmentDirections.actionSearchListFragmentToMealFragment(mealID);
+                SearchListFragmentDirections.actionSearchListFragmentToMealFragment(mealID,false);
         navController.navigate(action);
     }
 }
