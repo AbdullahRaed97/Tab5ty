@@ -1,14 +1,18 @@
 package com.example.tabty.home.view;
 
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,20 +31,21 @@ import com.example.tabty.R;
 import com.example.tabty.utilities.Utilities;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class HomeFragment extends Fragment implements OnImageClickedListener ,HomeView{
-    ImageButton menuButton;
-    ImageView randomMeal_iv;
-    TextView instructionsText;
-    RecyclerView recyclerView;
-    HomeAdapter myAdapter;
-    View homeView;
-    HomePresenter presenter;
-    TextView randomMeal_title;
-    MealsRepository myRepo;
-    TextView home_Instruction_tv;
-    Meal randoMealSent;
+    private ImageButton menuButton;
+    private ImageView randomMeal_iv;
+    private TextView instructionsText;
+    private RecyclerView recyclerView;
+    private HomeAdapter myAdapter;
+    private View homeView;
+    private HomePresenter presenter;
+    private TextView randomMeal_title;
+    private MealsRepository myRepo;
+    private TextView home_Instruction_tv;
+    private Meal randoMealSent;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -81,6 +86,11 @@ public class HomeFragment extends Fragment implements OnImageClickedListener ,Ho
         menuButton.setOnClickListener(v->{
             Utilities.openDrawer(requireActivity());
         });
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            LocalDate date = LocalDate.now();
+            Log.i("TAG", "onViewCreated: ");
+        }
+
     }
 
     @Override
