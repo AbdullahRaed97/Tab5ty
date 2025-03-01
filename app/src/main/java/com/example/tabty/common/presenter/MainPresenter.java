@@ -40,14 +40,21 @@ public class MainPresenter {
     public void setSharedPreferencesValues(SharedPreferences sharedPreferences){
         SharedPreferences.Editor myEditor = sharedPreferences.edit();
         myEditor.putBoolean("isGuest",false);
+        myEditor.putString("Date","");
         myEditor.apply();
     }
     public boolean isGuestMode(SharedPreferences sharedPreferences){
         return sharedPreferences.getBoolean("isGuest",false);
     }
     public void logout(){
-        mealsRepo.deleteAllMeals();
-        plannedMealRepo.deleteAllPlannedMeal();
+        mealsRepo.deleteAllMeals().
+                subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe();
+        plannedMealRepo.deleteAllPlannedMeal().
+                subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe();;
         FirebaseManagement.logoutFromFirebase();
     }
 }
