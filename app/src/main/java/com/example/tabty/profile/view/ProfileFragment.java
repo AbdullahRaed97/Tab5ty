@@ -35,7 +35,6 @@ public class ProfileFragment extends Fragment implements ProfileView {
     Button goToFavBtn;
     Button goToCalBtn;
     NavController navController;
-    Button syncData ;
     ProfilePresenter presenter;
     Button backUpBtn;
     View myView;
@@ -59,7 +58,6 @@ public class ProfileFragment extends Fragment implements ProfileView {
         logoutButton = view.findViewById(R.id.logoutBtn);
         goToFavBtn = view.findViewById(R.id.goToFavBtn);
         goToCalBtn = view.findViewById(R.id.goToCalBtn);
-        syncData = view.findViewById(R.id.syncButton);
         backUpBtn = view.findViewById(R.id.backUpBtn);
         myView=view;
         navController = Navigation.findNavController(view);
@@ -91,12 +89,8 @@ public class ProfileFragment extends Fragment implements ProfileView {
             navController.navigate(R.id.action_global_calendarFragment);
         });
 
-        syncData.setOnClickListener(v->{
-            presenter.syncData();
-        });
-
         backUpBtn.setOnClickListener(v->{
-            presenter.dataBackUp();
+            presenter.dataBackup();
         });
 
         menuButton.setOnClickListener(v->{

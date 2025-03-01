@@ -5,6 +5,8 @@ import android.annotation.SuppressLint;
 import com.example.tabty.favourite.view.FavouriteView;
 import com.example.tabty.model.MealsRepository;
 import com.example.tabty.model.db.MealEntity;
+import com.example.tabty.utilities.FirestoreManagement;
+
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.CompletableObserver;
@@ -39,6 +41,7 @@ public class FavouritePresenter {
                 myView.onDeleteMealFailure(e.getLocalizedMessage());
             }
         });
+        FirestoreManagement.deleteMealFromFirestore(meal);
     }
     @SuppressLint("CheckResult")
     public void getAllLocalMeals(){

@@ -8,6 +8,7 @@ import androidx.annotation.RequiresApi;
 import com.example.tabty.calendar.view.CalendarView;
 import com.example.tabty.model.PlannedMealRepository;
 import com.example.tabty.model.db.PlannedMeal;
+import com.example.tabty.utilities.FirestoreManagement;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -30,7 +31,7 @@ public class CalendarPresenter {
         .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe();
-
+        FirestoreManagement.deletePlannedMealFromFirestore(meal);
     }
     @SuppressLint("CheckResult")
     @RequiresApi(api = Build.VERSION_CODES.O)
