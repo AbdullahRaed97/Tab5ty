@@ -29,9 +29,9 @@ import kotlin.text.MatchResult;
 import kotlin.text.Regex;
 
 public class MealPresenter {
-    MealsRepository myRepo;
-    PlannedMealRepository plannedMealRepo;
-    MealView myView;
+    private MealsRepository myRepo;
+    private PlannedMealRepository plannedMealRepo;
+    private MealView myView;
    public MealPresenter(MealsRepository myRepo,PlannedMealRepository plannedMealRepo , MealView myView){
         this.myRepo = myRepo;
         this.plannedMealRepo = plannedMealRepo;

@@ -18,9 +18,9 @@ import java.util.ArrayList;
 
 public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.ViewHolder> {
 
-    Context context;
-    ArrayList<String> ingredient;
-    ArrayList<String> measures;
+    private Context context;
+    private ArrayList<String> ingredient;
+    private ArrayList<String> measures;
     IngredientsAdapter(Context context ,ArrayList<String> ingredient ,ArrayList<String> measures){
         this.ingredient=ingredient;
         this.context=context;

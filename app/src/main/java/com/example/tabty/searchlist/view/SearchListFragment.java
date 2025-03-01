@@ -33,15 +33,15 @@ import java.util.List;
 
 public class SearchListFragment extends Fragment implements SearchListView, OnImageClickListener {
 
-    String filter;
-    RecyclerView recyclerView;
-    SearchListPresenter presenter;
-    SearchListAdapter myAdapter;
-    EditText searchBar;
-    ImageButton menuButton;
-    List<Meal> meals;
-    NavController navController;
-    private TextWatcher watcher;
+   private String filter;
+   private RecyclerView recyclerView;
+   private SearchListPresenter presenter;
+   private SearchListAdapter myAdapter;
+   private EditText searchBar;
+   private ImageButton menuButton;
+   private List<Meal> meals;
+   private NavController navController;
+   private TextWatcher watcher;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

@@ -19,8 +19,8 @@ import java.util.List;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
     private final Context context;
-    List<Meal> meals;
-    OnImageClickedListener imglistner;
+    private List<Meal> meals;
+    private OnImageClickedListener imglistner;
     public HomeAdapter(Context context, OnImageClickedListener imglistner, List<Meal> meals) {
         this.context = context;
         this.meals = meals;
@@ -59,8 +59,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
         notifyDataSetChanged();
     }
     class ViewHolder extends RecyclerView.ViewHolder{
-        ImageView home_mealImage;
-        TextView home_mealTitle;
+        private ImageView home_mealImage;
+        private TextView home_mealTitle;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             home_mealImage=itemView.findViewById(R.id.home_mealImage);

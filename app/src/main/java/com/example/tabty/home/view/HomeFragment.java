@@ -43,7 +43,7 @@ public class HomeFragment extends Fragment implements OnImageClickedListener ,Ho
     private MealsRepository myRepo;
     private TextView home_Instruction_tv;
     private Meal randoMealSent;
-    String currentDate;
+    private String currentDate;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

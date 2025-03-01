@@ -1,7 +1,7 @@
 package com.example.tabty.model.network.POJOs;
 
 public class Country {
-    public String strArea;
+    private String strArea;
 
     public Country() {
     }

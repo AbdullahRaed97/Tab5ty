@@ -1,10 +1,10 @@
 package com.example.tabty.model.network.POJOs;
 
 public class Category {
-        public String idCategory;
-        public String strCategory;
-        public String strCategoryThumb;
-        public String strCategoryDescription;
+        private String idCategory;
+        private String strCategory;
+        private String strCategoryThumb;
+        private String strCategoryDescription;
 
     public Category() {
     }

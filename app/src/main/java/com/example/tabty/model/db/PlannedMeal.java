@@ -11,14 +11,14 @@ import java.util.Date;
 @Entity(tableName = "PlannedMeal",primaryKeys = {"idMeal","mealDate"})
 public class PlannedMeal {
     @NonNull
-    public String idMeal;
-    public String strMeal;
-    public String strCategory;
-    public String strArea;
-    public String strInstructions;
-    public String strMealThumb;
+    private String idMeal;
+    private String strMeal;
+    private String strCategory;
+    private String strArea;
+    private String strInstructions;
+    private String strMealThumb;
     @NonNull
-    LocalDate mealDate;
+    private LocalDate mealDate;
     public PlannedMeal(Meal meal , LocalDate mealDate){
         this.idMeal=meal.getIdMeal();
         this.strMeal=meal.getStrMeal();

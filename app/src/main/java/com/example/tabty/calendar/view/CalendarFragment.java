@@ -33,14 +33,14 @@ import java.util.Calendar;
 import java.util.List;
 
 public class CalendarFragment extends Fragment implements OnCalendarItemClickListener, com.example.tabty.calendar.view.CalendarView {
-    CalendarView calendarView;
-    CalendarPresenter presenter;
-    PlannedMealRepository myRepo;
-    View myView;
-    RecyclerView recyclerView;
-    CalendarAdapter myAdapter;
-    ImageButton calMenuBtn;
-    NavController navController;
+    private CalendarView calendarView;
+    private CalendarPresenter presenter;
+    private PlannedMealRepository myRepo;
+    private View myView;
+    private RecyclerView recyclerView;
+    private CalendarAdapter myAdapter;
+    private ImageButton calMenuBtn;
+    private NavController navController;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

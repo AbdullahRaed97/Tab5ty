@@ -110,8 +110,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView image;
-        TextView nameText;
+        private ImageView image;
+        private TextView nameText;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             image=itemView.findViewById(R.id.image);

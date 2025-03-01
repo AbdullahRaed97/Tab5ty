@@ -41,13 +41,13 @@ import io.reactivex.rxjava3.core.Observable;
 
 public class SearchFragment extends Fragment implements SearchView ,OnImageClickListener {
 
-    RecyclerView recyclerView;
-    ChipGroup chipGroup;
-    EditText searchBar;
-    ImageButton menuButton;
-    SearchPresenter presenter;
-    SearchAdapter myAdapter;
-    View myView;
+    private RecyclerView recyclerView;
+    private ChipGroup chipGroup;
+    private EditText searchBar;
+    private ImageButton menuButton;
+    private SearchPresenter presenter;
+    private SearchAdapter myAdapter;
+    private View myView;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

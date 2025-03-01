@@ -18,7 +18,7 @@ import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Single;
 
 public class PlannedMealLocalDataSource {
-    PlannedMealDao dao;
+    private PlannedMealDao dao;
 
     public PlannedMealLocalDataSource(Context context) {
         MealsDataBase plannedMealDatabase = MealsDataBase.getInstance(context);

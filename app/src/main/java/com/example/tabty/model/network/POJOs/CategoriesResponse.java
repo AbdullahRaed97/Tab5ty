@@ -6,7 +6,7 @@ public class CategoriesResponse {
     public CategoriesResponse() {
     }
 
-    public ArrayList<Category> categories;
+    private ArrayList<Category> categories;
 
     public ArrayList<Category> getCategories() {
         return categories;

@@ -60,8 +60,8 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Vi
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
-        TextView nameText;
-        ImageView searchListImage;
+        private TextView nameText;
+        private ImageView searchListImage;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             nameText=itemView.findViewById(R.id.searchLisNameText);

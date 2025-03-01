@@ -16,8 +16,8 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class SearchListPresenter {
 
-    MealsRepository myRepo;
-    SearchListView myView;
+    private MealsRepository myRepo;
+    private SearchListView myView;
     public SearchListPresenter(MealsRepository myRepo, SearchListView myView) {
         this.myRepo = myRepo;
         this.myView = myView;

@@ -14,7 +14,7 @@ import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Flowable;
 
 public class PlannedMealRepository {
-    PlannedMealLocalDataSource localDataSource;
+    private PlannedMealLocalDataSource localDataSource;
     private static PlannedMealRepository instance = null;
 
     private PlannedMealRepository(PlannedMealLocalDataSource localDataSource){

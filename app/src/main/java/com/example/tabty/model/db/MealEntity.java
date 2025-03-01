@@ -11,18 +11,18 @@ import java.util.ArrayList;
 public class MealEntity {
         @PrimaryKey
         @NonNull
-        public String idMeal;
-        public String strMeal;
-        public String strCategory;
-        public String strArea;
-        public String strInstructions;
-        public String strMealThumb;
-        public String strTags;
-        public String strYoutube;
+        private String idMeal;
+        private String strMeal;
+        private String strCategory;
+        private String strArea;
+        private String strInstructions;
+        private String strMealThumb;
+        private String strTags;
+        private String strYoutube;
         @Ignore
-        public ArrayList<String> ingredients;
+        private ArrayList<String> ingredients;
         @Ignore
-        public ArrayList<String> measures;
+        private ArrayList<String> measures;
         public MealEntity() {
 
         }

@@ -23,7 +23,7 @@ import java.util.List;
 public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.ViewHolder> {
     private Context context;
     private List<PlannedMeal> meals;
-    OnCalendarItemClickListener listener;
+    private OnCalendarItemClickListener listener;
 
     public CalendarAdapter(Context context, List<PlannedMeal> meals, OnCalendarItemClickListener listener) {
         this.context = context;
@@ -67,11 +67,11 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.ViewHo
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView favMeal_iv;
-        TextView favMeal_tv;
-        ImageButton favMealDeleteBtn;
-        ImageView favMealFlag_iv;
-        CardView calendarCardView;
+        private ImageView favMeal_iv;
+        private TextView favMeal_tv;
+        private ImageButton favMealDeleteBtn;
+        private ImageView favMealFlag_iv;
+        private CardView calendarCardView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

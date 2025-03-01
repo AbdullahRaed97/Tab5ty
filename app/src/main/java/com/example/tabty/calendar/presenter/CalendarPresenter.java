@@ -20,8 +20,8 @@ import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class CalendarPresenter {
-    PlannedMealRepository myRepo;
-    CalendarView myView;
+    private PlannedMealRepository myRepo;
+    private CalendarView myView;
     public CalendarPresenter(PlannedMealRepository myRepo , CalendarView myView){
         this.myRepo=myRepo;
         this.myView=myView;

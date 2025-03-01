@@ -5,7 +5,7 @@ import com.example.tabty.model.db.Meal;
 import java.util.ArrayList;
 
 public class MealResponse {
-    public ArrayList<Meal> meals;
+    private ArrayList<Meal> meals;
     public MealResponse()
     {
 

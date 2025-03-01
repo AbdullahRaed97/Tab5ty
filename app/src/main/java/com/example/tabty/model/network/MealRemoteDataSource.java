@@ -19,7 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MealRemoteDataSource {
     private static final String BASE_URL="https://www.themealdb.com/api/json/v1/1/";
-    ApiMeals service;
+    private ApiMeals service;
     private static MealRemoteDataSource remoteDataSource;
 
     private MealRemoteDataSource() {

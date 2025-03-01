@@ -15,8 +15,8 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class FavouritePresenter {
 
-    MealsRepository myRepo;
-    FavouriteView myView;
+    private MealsRepository myRepo;
+    private FavouriteView myView;
     public FavouritePresenter(MealsRepository myRepo,FavouriteView myView){
         this.myRepo=myRepo;
         this.myView=myView;

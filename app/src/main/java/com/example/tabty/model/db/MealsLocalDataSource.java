@@ -8,7 +8,7 @@ import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Flowable;
 
 public class MealsLocalDataSource {
-    MealsDao dao;
+    private MealsDao dao;
     public  MealsLocalDataSource(Context context){
         MealsDataBase mealsDataBase = MealsDataBase.getInstance(context);
         dao = mealsDataBase.getMealsDao();

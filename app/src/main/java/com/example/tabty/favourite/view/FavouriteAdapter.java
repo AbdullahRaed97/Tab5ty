@@ -23,7 +23,7 @@ import java.util.List;
 public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.ViewHolder> {
     private Context context;
     private List<MealEntity> meals;
-    OnFavItemClickListener listener;
+    private OnFavItemClickListener listener;
 
     public FavouriteAdapter(Context context, List<MealEntity> meals, OnFavItemClickListener listener) {
         this.context = context;
@@ -66,11 +66,11 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.View
         notifyDataSetChanged();
     }
     class ViewHolder extends RecyclerView.ViewHolder{
-        ImageView favMeal_iv;
-        TextView favMeal_tv;
-        ImageButton favMealDeleteBtn;
-        ImageView favMealFlag_iv;
-        CardView favCardView;
+        private ImageView favMeal_iv;
+        private TextView favMeal_tv;
+        private ImageButton favMealDeleteBtn;
+        private ImageView favMealFlag_iv;
+        private CardView favCardView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

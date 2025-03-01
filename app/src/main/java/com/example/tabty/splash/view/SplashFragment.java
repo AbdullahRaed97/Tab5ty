@@ -16,9 +16,9 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class SplashFragment extends Fragment implements SplashView{
     private static final String TAG = "SplashFragment";
-    FirebaseUser user=null;
-    NavController navController;
-    SplashPresenter presenter;
+    private FirebaseUser user=null;
+    private NavController navController;
+    private SplashPresenter presenter;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

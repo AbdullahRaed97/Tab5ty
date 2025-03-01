@@ -30,14 +30,14 @@ import com.google.android.material.snackbar.Snackbar;
 
 public class ProfileFragment extends Fragment implements ProfileView {
 
-    ImageButton menuButton;
-    Button logoutButton;
-    Button goToFavBtn;
-    Button goToCalBtn;
-    NavController navController;
-    ProfilePresenter presenter;
-    Button backUpBtn;
-    View myView;
+    private ImageButton menuButton;
+    private Button logoutButton;
+    private Button goToFavBtn;
+    private Button goToCalBtn;
+    private NavController navController;
+    private ProfilePresenter presenter;
+    private Button backUpBtn;
+    private View myView;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

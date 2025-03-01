@@ -13,7 +13,7 @@ public class LoginPresenter  {
     private LoginView myView;
     private final FirebaseAuth myFirebase;
     private final FirebaseUser user;
-    GoogleHelper googleHelper;
+    private GoogleHelper googleHelper;
     public LoginPresenter(LoginView myView,GoogleHelper googleHelper){
         myFirebase = FirebaseAuth.getInstance();
         user = myFirebase.getCurrentUser();

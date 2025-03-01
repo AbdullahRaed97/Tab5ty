@@ -15,8 +15,8 @@ import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Single;
 
 public class MealsRepository {
-    MealRemoteDataSource remoteDataSource;
-    MealsLocalDataSource localDataSource;
+    private MealRemoteDataSource remoteDataSource;
+    private MealsLocalDataSource localDataSource;
     private static MealsRepository instance = null ;
 
     private MealsRepository(MealRemoteDataSource remoteDataSource , MealsLocalDataSource localDataSource) {

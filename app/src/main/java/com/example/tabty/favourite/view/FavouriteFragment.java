@@ -28,13 +28,13 @@ import java.util.List;
 
 public class FavouriteFragment extends Fragment implements OnFavItemClickListener ,FavouriteView{
 
-    FavouriteAdapter myAdapter;
-    FavouritePresenter presenter;
-    MealsRepository myRepo;
-    View myView;
-    RecyclerView recyclerView;
-    ImageButton favMenuBtn;
-    NavController navController;
+    private FavouriteAdapter myAdapter;
+    private FavouritePresenter presenter;
+    private MealsRepository myRepo;
+    private View myView;
+    private RecyclerView recyclerView;
+    private ImageButton favMenuBtn;
+    private NavController navController;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

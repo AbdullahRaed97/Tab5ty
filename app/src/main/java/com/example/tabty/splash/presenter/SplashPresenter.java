@@ -8,9 +8,9 @@ import android.os.Looper;
 
 
 public class SplashPresenter {
-    SplashView myView;
-    Handler myHandler;
-    FirebaseUser user;
+    private SplashView myView;
+    private Handler myHandler;
+    private FirebaseUser user;
     public SplashPresenter(SplashView myView){
         this.myView=myView;
         myHandler = new Handler();

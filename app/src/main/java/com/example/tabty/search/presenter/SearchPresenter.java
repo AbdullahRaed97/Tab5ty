@@ -18,8 +18,8 @@ import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class SearchPresenter {
-    MealsRepository myRepo;
-    SearchView myView;
+    private MealsRepository myRepo;
+    private SearchView myView;
 
     public SearchPresenter(MealsRepository myRepo , SearchView myView){
         this.myRepo=myRepo;

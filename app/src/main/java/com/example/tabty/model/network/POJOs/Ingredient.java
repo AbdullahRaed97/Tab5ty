@@ -1,9 +1,9 @@
 package com.example.tabty.model.network.POJOs;
 
 public class Ingredient {
-        public String idIngredient;
-        public String strIngredient;
-        public String strDescription;
+        private String idIngredient;
+        private String strIngredient;
+        private String strDescription;
 
     public Ingredient() {
     }

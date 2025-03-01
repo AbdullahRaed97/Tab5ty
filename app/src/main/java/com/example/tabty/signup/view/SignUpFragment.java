@@ -22,14 +22,14 @@ import com.google.android.material.snackbar.Snackbar;
 
 public class SignUpFragment extends Fragment implements SignUpView {
 
-    EditText emailText;
-    EditText passwordText;
-    EditText confirmPasswordText;
-    TextView loginText;
-    Button registerButton;
-    NavController navController;
-    SignUpPresenter presenter;
-    View myView;
+    private EditText emailText;
+    private EditText passwordText;
+    private EditText confirmPasswordText;
+    private TextView loginText;
+    private Button registerButton;
+    private NavController navController;
+    private SignUpPresenter presenter;
+    private View myView;
     private static final String TAG = "SignUpFragment";
     @Override
     public void onCreate(Bundle savedInstanceState) {

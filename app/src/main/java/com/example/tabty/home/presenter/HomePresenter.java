@@ -15,8 +15,8 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class HomePresenter  {
-    MealsRepository myRepo;
-    HomeView myView;
+    private MealsRepository myRepo;
+    private HomeView myView;
     public HomePresenter(MealsRepository myRepo, HomeView myView){
         this.myRepo=myRepo;
         this.myView=myView;
