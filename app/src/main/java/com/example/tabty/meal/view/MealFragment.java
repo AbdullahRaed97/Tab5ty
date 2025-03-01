@@ -41,21 +41,22 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTube
 
 
 public class MealFragment extends Fragment implements MealView {
-    ImageView mealImage;
-    ImageButton favBtn;
-    ImageButton calendarBtn;
-    TextView mealName;
-    TextView mealType;
-    ImageView countryFlag;
-    TextView instText;
-    View myView;
-    RecyclerView recyclerView;
-    IngredientsAdapter myAdapter;
-    YouTubePlayerView youtubeView;
-    MealPresenter presenter;
-    NavController navController;
-    Meal recievedMeal;
-    ImageButton mealMenuBtn;
+    private ImageView mealImage;
+    private ImageButton favBtn;
+    private ImageButton calendarBtn;
+    private TextView mealName;
+    private TextView mealType;
+    private ImageView countryFlag;
+    private TextView instText;
+    private View myView;
+    private RecyclerView recyclerView;
+    private IngredientsAdapter myAdapter;
+    private YouTubePlayerView youtubeView;
+    private MealPresenter presenter;
+    private NavController navController;
+    private Meal recievedMeal;
+    private ImageButton mealMenuBtn;
+    private TextView mealCategory;
         private static final String TAG = "MealFragment";
         @Override
         public void onCreate(Bundle savedInstanceState) {
@@ -83,7 +84,9 @@ public class MealFragment extends Fragment implements MealView {
             recyclerView=view.findViewById(R.id.ingredientRecyclerView);
             youtubeView=view.findViewById(R.id.youtubeView);
             mealMenuBtn=view.findViewById(R.id.mealMenuBtn);
+            mealCategory=view.findViewById(R.id.mealCategory_tv);
             myView=view;
+
             navController= Navigation.findNavController(myView);
             MealsRepository myRepo = MealsRepository.getInstance(MealRemoteDataSource.getInstance(),new MealsLocalDataSource(getContext()));
             PlannedMealRepository plannedMealRepo = PlannedMealRepository.getInstance(new PlannedMealLocalDataSource(requireContext()));
@@ -164,6 +167,7 @@ public class MealFragment extends Fragment implements MealView {
         recievedMeal = meal;
         mealName.setText(recievedMeal.getStrMeal());
         instText.setText(recievedMeal.getStrInstructions());
+        mealCategory.setText(recievedMeal.getStrCategory());
         Glide.with(getContext()).load(recievedMeal.getStrMealThumb())
                 .apply(new RequestOptions().override(500,500)).into(mealImage);
         Glide.with(requireContext()).load("https://www.themealdb.com/images/icons/flags/big/64/"+ Utilities.getCountryNameCode(recievedMeal.getStrArea())+".png")
