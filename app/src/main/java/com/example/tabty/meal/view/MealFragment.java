@@ -94,6 +94,10 @@ public class MealFragment extends Fragment implements MealView {
 
             //receive clicked meal from home
             String mealID = MealFragmentArgs.fromBundle(getArguments()).getMealID();
+            if(MealFragmentArgs.fromBundle(getArguments()).getStatus()){
+                calendarBtn.setVisibility(View.GONE);
+                favBtn.setVisibility(View.GONE);
+            }
             presenter.getMealByID(mealID);
 
             favBtn.setOnClickListener(v->{

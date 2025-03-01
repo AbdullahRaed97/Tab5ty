@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
@@ -31,6 +32,8 @@ public class MainActivity extends AppCompatActivity implements MainView{
     private NavController navController;
     private MainPresenter presenter;
     private Dialog dialog;
+    private Button goToFav;
+    private Button goToCal;
     private final String SHARED_PPEF_NAME="ApplicationPreferences";
     public static SharedPreferences sharedPreferences;
     @Override
@@ -49,12 +52,25 @@ public class MainActivity extends AppCompatActivity implements MainView{
         , PlannedMealRepository.getInstance(new PlannedMealLocalDataSource(this)));
 
         presenter.checkNetworkConnectivity(this);
+
         presenter.setSharedPreferencesValues(sharedPreferences);
 
         dialog = new Dialog(this);
         dialog.setContentView(R.layout.custom_dialog);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT);
         dialog.setCancelable(false);
+
+        goToCal = dialog.findViewById(R.id.goToCalendar);
+        goToFav = dialog.findViewById(R.id.goToFavourites);
+
+        goToCal.setOnClickListener(v->{
+            navController.navigate(R.id.action_global_calendarFragment);
+            dialog.cancel();
+        });
+        goToFav.setOnClickListener(v->{
+            navController.navigate(R.id.action_global_favouriteFragment3);
+            dialog.cancel();
+        });
 
         navController = navHostFragment.getNavController();
         NavigationUI.setupWithNavController(navigationView,navController);
@@ -134,7 +150,6 @@ public class MainActivity extends AppCompatActivity implements MainView{
         });
         navigationView.bringToFront();
     }
-
     @Override
     public void onNetworkAvailable() {
         Log.i("TAG", "onNetworkAvailable: "+"Network is back");

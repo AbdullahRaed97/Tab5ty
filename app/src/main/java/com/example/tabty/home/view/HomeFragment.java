@@ -2,7 +2,6 @@ package com.example.tabty.home.view;
 
 import android.os.Build;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -11,17 +10,16 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.tabty.common.view.MainActivity;
 import com.example.tabty.home.presenter.HomePresenter;
 import com.example.tabty.model.db.Meal;
 import com.example.tabty.model.db.MealsLocalDataSource;
@@ -30,7 +28,6 @@ import com.example.tabty.model.network.MealRemoteDataSource;
 import com.example.tabty.R;
 import com.example.tabty.utilities.Utilities;
 import com.google.android.material.snackbar.Snackbar;
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -46,6 +43,7 @@ public class HomeFragment extends Fragment implements OnImageClickedListener ,Ho
     private MealsRepository myRepo;
     private TextView home_Instruction_tv;
     private Meal randoMealSent;
+    String currentDate;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,6 +58,7 @@ public class HomeFragment extends Fragment implements OnImageClickedListener ,Ho
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -71,34 +70,37 @@ public class HomeFragment extends Fragment implements OnImageClickedListener ,Ho
         home_Instruction_tv=view.findViewById(R.id.home_instruction_tv);
         menuButton=view.findViewById(R.id.homeMenuButton);
 
+        currentDate = LocalDate.now().toString();
+        Log.i("TAG", "onViewCreated: "+currentDate);
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         layoutManager.setOrientation(GridLayoutManager.HORIZONTAL);
         myRepo=  MealsRepository.getInstance(MealRemoteDataSource.getInstance(),new MealsLocalDataSource(getContext()) );
         presenter= new HomePresenter(myRepo,this);
         presenter.getRemoteAllMealsByFirstLetter("s");
-        presenter.getRemoteRandomMeal();
+        presenter.getMealOfTheDay(MainActivity.sharedPreferences);
         randomMeal_iv.setOnClickListener(v->{
-            HomeFragmentDirections.ActionHomeFragmentToMealFragment2 action = HomeFragmentDirections.actionHomeFragmentToMealFragment2(randoMealSent.getIdMeal());
-            Navigation.findNavController(homeView).navigate(action);
+            if(randoMealSent!=null) {
+                HomeFragmentDirections.ActionHomeFragmentToMealFragment2 action = HomeFragmentDirections.actionHomeFragmentToMealFragment2(randoMealSent.getIdMeal(),false);
+                Navigation.findNavController(homeView).navigate(action);
+            }
         });
 
         menuButton.setOnClickListener(v->{
             Utilities.openDrawer(requireActivity());
         });
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            LocalDate date = LocalDate.now();
-            Log.i("TAG", "onViewCreated: ");
-        }
 
     }
 
     @Override
     public void imageClickedAction(Meal meal) {
         Snackbar.make(homeView,"Image Clicked",Snackbar.LENGTH_SHORT).show();
-        Meal sendMeal = meal;
-        HomeFragmentDirections.ActionHomeFragmentToMealFragment2 action = HomeFragmentDirections.actionHomeFragmentToMealFragment2(sendMeal.getIdMeal());
-        Navigation.findNavController(homeView).navigate(action);
+        if(meal !=null) {
+            Meal sendMeal = meal;
+            HomeFragmentDirections.ActionHomeFragmentToMealFragment2 action = HomeFragmentDirections.actionHomeFragmentToMealFragment2(sendMeal.getIdMeal(), false);
+            Navigation.findNavController(homeView).navigate(action);
+        }
     }
 
     @Override
@@ -114,7 +116,7 @@ public class HomeFragment extends Fragment implements OnImageClickedListener ,Ho
     }
 
     @Override
-    public void showRandomMeal(Meal meal) {
+    public void showMealOfTheDay(Meal meal) {
         Glide.with(getContext()).load(meal.getStrMealThumb())
                 .apply(new RequestOptions().override(500,500)).into(randomMeal_iv);
         randomMeal_title.setText(meal.getStrMeal());

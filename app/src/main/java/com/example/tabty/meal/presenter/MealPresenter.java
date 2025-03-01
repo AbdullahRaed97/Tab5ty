@@ -19,7 +19,6 @@ import com.example.tabty.utilities.FirestoreManagement;
 
 import java.time.LocalDate;
 import java.util.Calendar;
-import java.util.Date;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;

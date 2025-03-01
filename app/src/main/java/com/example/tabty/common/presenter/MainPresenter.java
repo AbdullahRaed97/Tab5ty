@@ -3,13 +3,18 @@ package com.example.tabty.common.presenter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
+import android.net.NetworkRequest;
+
+import androidx.annotation.NonNull;
 
 import com.example.tabty.common.view.MainView;
 import com.example.tabty.model.MealsRepository;
 import com.example.tabty.model.PlannedMealRepository;
 import com.example.tabty.utilities.FirebaseManagement;
 import com.example.tabty.utilities.NetworkConnectivityObserver;
-
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
@@ -35,12 +40,13 @@ public class MainPresenter {
                     }else{
                         myView.onNetworkLost();
                     }
-                });
+                },error-> myView.onNetworkLost());
     }
     public void setSharedPreferencesValues(SharedPreferences sharedPreferences){
         SharedPreferences.Editor myEditor = sharedPreferences.edit();
         myEditor.putBoolean("isGuest",false);
-        myEditor.putString("Date","");
+        myEditor.putString("Date",null);
+        myEditor.putString("Meal",null);
         myEditor.apply();
     }
     public boolean isGuestMode(SharedPreferences sharedPreferences){
@@ -57,4 +63,10 @@ public class MainPresenter {
                 .subscribe();;
         FirebaseManagement.logoutFromFirebase();
     }
+
+//    public boolean isNetworkConnectedOnStart() {
+//        networkCapabilities = connectivityManager.getNetworkCapabilities(connectivityManager.getActiveNetwork());
+//        return networkCapabilities != null && networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+//                && networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED);
+//    }
 }
