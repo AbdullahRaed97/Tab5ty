@@ -46,8 +46,10 @@ public class GoogleHelper {
     }
 
     public void signIn() {
-        Intent signInIntent = googleSignInClient.getSignInIntent();
-        launcher.launch(signInIntent);
+        googleSignInClient.signOut().addOnCompleteListener(task -> {
+            Intent signInIntent = googleSignInClient.getSignInIntent();
+            launcher.launch(signInIntent);
+        });
     }
     private void firebaseAuthWithGoogle(String idToken) {
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
